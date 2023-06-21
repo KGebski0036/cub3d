@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:24:18 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/03 15:22:03 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/21 17:36:18 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#ifndef CUB_H
+# define CUB_H
 
 # include <math.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include "mlx.h"
-# include "libft/libft.h"
-# define WINDOW_W 700
-# define WINDOW_H 700
-
-
+# include "libft.h"
+# include "color_and_keys.h"
+# define WINDOW_W 1200
+# define WINDOW_H 900
 
 typedef struct s_vec2
 {
@@ -49,16 +48,18 @@ typedef struct s_env
 	int				endian;
 }	t_env;
 
-//        --=[ _main.c ]=--        //
-int		error(char *str);
-int		close_window(t_env *mediator);
-int		key_press(int key, t_env *mediator);
+//    --=[ window_menager.c ]=--    //
+void	error(char *str, t_env *env);
+int		close_window(t_env *env);
+int		key_press(int key, t_env *env);
 
 //       --=[ drawers.c ]=--       //
 void	my_mlx_pixel_put(t_env *med, int color, t_vec2 point);
 
 //    --=[ initialization.c ]=--    //
-
+int		input_checker(int ac, char **av, t_env *env);
+void	print_instructions(void);
+void	init_window(t_env *env, int window_width, int window_height);
 
 
 #endif

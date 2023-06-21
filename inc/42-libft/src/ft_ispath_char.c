@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window_menager.c                                   :+:      :+:    :+:   */
+/*   ft_ispath_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/02 12:02:34 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/21 17:36:53 by kgebski          ###   ########.fr       */
+/*   Created: 2022/06/08 22:21:52 by cjackows          #+#    #+#             */
+/*   Updated: 2023/06/15 20:48:51 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "../inc/libft.h"
 
-int	close_window(t_env *env)
+/**
+ * @brief function checks if 'val' is a alphabetic character (a-z & A-Z)
+ *
+ * @param c parameter that gets checked
+ * @return returns int 1 if parameter is alphanumeric or 0 if not.
+ */
+int	ft_ispath_char(int c)
 {
-	if (env->window)
-		mlx_destroy_window(env->mlx, env->window);
-	if (env->img)
-		mlx_destroy_image(env->mlx, env->img);
-	free(env);
-	ft_putstr_fd("Exit\n", 2);
-	exit(0);
-}
-
-void	error(char *str, t_env *env)
-{
-	ft_putstr_fd(str, 2);
-	close_window(env);
-}
-
-int	key_press(int key, t_env *env)
-{
-	if (key == KEY_ESC)
-	{
-		close_window(env);
-	}
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')
+		|| c == '?' || c == '_' || (c >= '0' && c <= '9'))
+		return (1);
 	return (0);
 }
-
