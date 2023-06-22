@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:19:56 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/03 16:55:11 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/22 11:50:06 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ int	main(int ac, char **av)
 	env = (t_env *)malloc(sizeof(t_env));
 	input_checker(ac, av, env);
 	init_window(env, WINDOW_W, WINDOW_H);
-	//TODO: All
+	mlx_loop_hook(env->mlx, update, env);
 	mlx_loop(env->mlx);
 	return (0);
 }
-

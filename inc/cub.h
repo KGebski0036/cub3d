@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:24:18 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/21 17:36:18 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/22 11:33:45 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <math.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <time.h>
 # include "mlx.h"
 # include "libft.h"
 # include "color_and_keys.h"
@@ -55,6 +56,7 @@ int		key_press(int key, t_env *env);
 
 //       --=[ drawers.c ]=--       //
 void	my_mlx_pixel_put(t_env *med, int color, t_vec2 point);
+int		update(t_env *env);
 
 //    --=[ initialization.c ]=--    //
 int		input_checker(int ac, char **av, t_env *env);
