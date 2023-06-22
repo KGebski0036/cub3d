@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:24:18 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/22 13:14:21 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/22 19:55:46 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,34 +20,9 @@
 # include "mlx.h"
 # include "libft.h"
 # include "color_and_keys.h"
+# include "structs.h"
 # define WINDOW_W 1200
 # define WINDOW_H 900
-
-typedef struct s_vec2
-{
-	double	x;
-	double	y;
-}	t_vec2;
-
-typedef struct s_vec3
-{
-	double	x;
-	double	y;
-	double	z;
-}	t_vec3;
-
-typedef struct s_env
-{
-	void			*mlx;
-	void			*window;
-	void			*img;
-	char			*img_addr;
-	t_vec2			window_size;
-
-	int				bits_per_pixel;
-	int				line_length;
-	int				endian;
-}	t_env;
 
 //    --=[ window_menager.c ]=--    //
 void	error(char *str, t_env *env);
@@ -65,5 +40,6 @@ void	init_window(t_env *env, int window_width, int window_height);
 
 //tmp
 void	ft_debug(char	*str, char	*str2, t_env	*env);
+void	dummy_filling(t_env *env);
 
 #endif
