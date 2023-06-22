@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:02:35 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/22 12:28:36 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/22 13:13:58 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	update(t_env *env)
 		result = ft_itoa(frames * 5);
 		frames = 0;
 		delta = 0;
+		//system("clear");
+		//ft_debug("char	*str", "char	*str2", env);
 	}
 	mlx_string_put(env->mlx, env->window, 10, 20, 0xFFFFFF, "FPS:");
 	mlx_string_put(env->mlx, env->window, 40, 20, 0xFFFFFF, result);

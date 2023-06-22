@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:24:18 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/22 11:33:45 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/22 13:14:21 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,7 @@ int		input_checker(int ac, char **av, t_env *env);
 void	print_instructions(void);
 void	init_window(t_env *env, int window_width, int window_height);
 
+//tmp
+void	ft_debug(char	*str, char	*str2, t_env	*env);
 
 #endif
