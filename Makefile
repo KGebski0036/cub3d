@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+         #
+#    By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 18:32:51 by cjackows          #+#    #+#              #
-#    Updated: 2023/06/21 17:35:16 by kgebski          ###   ########.fr        #
+#    Updated: 2023/06/22 12:44:09 by cjackows         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ TOTAL_PROGRESS = $(words $(OBJ))
 NAME		=	cub3d
 CC			=	cc
 CFLAGS		=	-O3 -Wall -Wextra -Werror
+
 LIBFT		=	./inc/42-libft/libft.a
 LIBFT_DIR	=	./inc/42-libft/
 HDRS_DIR	=	./inc/
@@ -54,14 +55,14 @@ else
 						-DKEY_W=13 -DKEY_A=0 -DKEY_S=1 -DKEY_D=2 -DKEYS
 endif
 
-SRC			=	$(wildcard $(SRC_DIR)/*.c)
+SRC			=	$(wildcard $(SRC_DIR)/*.c) #TODO
 HDRS 		=	-I$(LIBFT_DIR)inc -I$(MLX_DIR) -I$(HDRS_DIR)
 LIBS		=	-L$(LIBFT_DIR) -L$(MLX_DIR) $(MLX_FLAGS)
 OBJ				=$(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
 
-all:  $(NAME)
+all: mlx libft ascii-art $(NAME)
 
-$(NAME): mlx libft ascii-art $(OBJ)
+$(NAME): $(OBJ)
 	@echo "$(COMPILATION)Program \"$(NAME)\" compilation:"
 	$(CC) $(CFLAGS) $(LIBS) $(HDRS) $(OBJ) -o $(NAME) $(LIBFT) $(MLX_LIB) $(DEFINE_FLAGS)
 	@echo "$(RESET)$(INFO)$@ executable has been created$(RESET)"
@@ -103,41 +104,19 @@ re: fclean all
 
 sre: clean all
 
-git:
-	@echo "$(BLUE)"
-	git add *
-	@read -p "Commit msg:" msg;\
-	git commit -m "$$msg"
-	git push
-	@echo "$(INFO)$(GREEN)Git add, commit, push performed ✅$(RESET)"
-
 ascii-art:
-	@echo "\033[38;5;51m                                      \`\\/,"
-	@echo "\033[38;5;51m                                     .- '--."
-	@echo "\033[38;5;51m                                    '       \`"
-	@echo "\033[38;5;51m                                    \`.      .'        _."
-	@echo "\033[38;5;51m                            \`._  .-~'       \`~-.   _,'"
-	@echo "\033[38;5;87m                             ( )'              '.( )"
-	@echo "\033[38;5;87m               \`._    _       /                  .'       ."
-	@echo "\033[38;5;87m                ( )--' \`-.  .'                     ;   _\`"
-	@echo "\033[38;5;87m          .    .'        '.;                         ()' "
-	@echo "\033[38;5;87m           \`.-.\`           '                        :"
-	@echo "\033[38;5;231m        .  .    _____ ________          ___________\`                    __  /\      .__   \033[0m"
-	@echo "\033[38;5;195m          ,    /  |  |\_____  \         \_   _____/___________    ____ /  |_)/ ____ |  |  \033[0m"
-	@echo "\033[38;5;159m   ---*=::    /   |  |_/  ____/   ______ |    __) \_  __ \__  \  / ___\\\\\   __\/  _ \|  |  \033[0m"
-	@echo "\033[38;5;123m        \`:   /    ^   /       \  /_____/ |     \   |  | \// __ \/  \___ |  | (  <_> )  |__\033[0m"
-	@echo "\033[38;5;123m         .,  \____   |\_______ \         \___  /   |__|  (____  /\___  >|__|  \____/|____/\033[0m"
-	@echo "\033[38;5;123m        .  .      |__|        \/             \/    by cj4ck   \/     \/                  \033[0m"
-	@echo "\033[38;5;123m            .\`-'.           ,                     \`."
-	@echo "\033[38;5;123m           '    '.        .';                       () "
-	@echo "\033[38;5;159m                (_)-   .-'  \`.                      ;\`.         "
-	@echo "\033[38;5;159m               ,'   \`-'       \\                        '"
-	@echo "\033[38;5;159m                            (_).                   _'     '"
-	@echo "\033[38;5;159m                            .'   '-._         .-.'(_)      "
-	@echo "\033[38;5;195m                                    .'       \`.     \`.     "
-	@echo "\033[38;5;231m                                    '         ;       '    "
-	@echo "\033[38;5;195m                                     \`-.,. -'              "
-	@echo "\033[38;5;231m                                        /\\\               "
+	@echo "\033[1m\033[38;5;231m    +.   ✦         .     ✦     ✦       .        .       ⢀⣀⣤⣄⡀                                             .+"
+	@echo "\033[1m\033[38;5;231m    | '.  .    ✦          ✦  . ✦             ✦         ⣴⣿⡟⠁      .       ✦ .        ✦     .       ✦     .' |"
+	@echo "\033[1m\033[38;5;231m    |   +------------+.            ✦      .           ⢸⣿⣿      ✦      .                   .+-----------+   |" 
+	@echo "\033[1m\033[38;5;195m    |   |            | '.     .        ✦    .         ⠸⣿⣿⣆                  ✦          .'  |           |   |"
+	@echo "\033[1m\033[38;5;195m    |   |            |   +--------+      ✦       . ✦   ⠈⠻⠿⣿⠿⠞⠋    .    ✦           ✦  |    |           |   |"
+	@echo "\033[1m\033[38;5;195m    |   |            |   |        |   _____ ________           _________      ___.   ________  ________'   | "
+	@echo "\033[1m\033[38;5;195m    |   |            |   |        |  /  |  |\_____  \          \_   ___ \ __ _\_ |__ \_____  \ \______ \   | "
+	@echo "\033[1m\033[38;5;159m    |   |            |   +--------+ /   |  |_/  ____/   ______ /    \  \/|  |  \ __ \  _(__  <  |    |  \  | "
+	@echo "\033[1m\033[38;5;123m    |   |            | .'          /    ^   /       \  /_____/ \     \___|  |  / \_\ \/       \ |    \`   \ |"
+	@echo "\033[1m\033[38;5;123m    |   +------------+'............\____   |\_______ \..........\______  /____/|___  /______  //_______  / | "
+	@echo "\033[1m\033[38;5;123m    | .'                                |__|        \/                 \/          \/       \/         \/. | "
+	@echo "\033[3m\033[38;5;123m    +'.....................................................made with ♥ by @kgebski & @cjackows............'+ "
 	@echo
 
-.PHONY: all clean fclean re sre git mlx libft
+.PHONY: all clean fclean re sre mlx libft
