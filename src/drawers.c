@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:02:35 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/24 16:59:14 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/24 18:50:34 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	update(t_env *env)
 	clock_t				end;
 	static unsigned int	frames = 0;
 	static clock_t		delta = 0;
-	static char *		result = "100";
+	static char *		result = 0;
 
 	start = clock();
 	mlx_clear_window(env->mlx, env->window);
@@ -40,6 +40,8 @@ int	update(t_env *env)
 	delta += end - start;
 	if ((delta/(double)CLOCKS_PER_SEC) * 1000.0 > 0.2)
 	{
+		if (result)
+			free(result);
 		result = ft_itoa(frames * 5);
 		frames = 0;
 		delta = 0;

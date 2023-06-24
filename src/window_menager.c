@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_menager.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:02:34 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/24 15:17:20 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/24 19:02:56 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ int	close_window(t_env *env)
 		mlx_destroy_window(env->mlx, env->window);
 	if (env->img)
 		mlx_destroy_image(env->mlx, env->img);
+	if (env->map.bit_map)
+		pc_clear_2d_table(env->map.bit_map);
+	mlx_destroy_display(env->mlx);
 	free(env);
 	ft_putstr_fd("\nExit\n", 2);
 	exit(0);
@@ -38,3 +41,15 @@ int	key_press(int key, t_env *env)
 	return (0);
 }
 
+void pc_clear_2d_table(char **tab)
+{
+	int i;
+
+	i = -1;
+	if (tab)
+	{
+		while (tab[++i])
+			free(tab[i]);
+		free(tab);
+	}
+}

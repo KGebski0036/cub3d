@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:25:13 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/24 17:29:27 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/24 18:56:24 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	read_map(t_env *env, t_list **file_lines, int offset)
 	int		height;
 	int		wight;
 	char	**map;
-	
+
 	el = *file_lines;
 	while (el->next && offset--)
 		el = el->next;
-	height = pc_count_map_height(&el);
+	height = pc_count_map_height(&el, env);
 	wight = pc_count_map_wight(&el);
 	printf("Map size: (%s%i x %i%s)\n", DARKBLUE, wight, height, NC);
 	map = calloc(height + 1, sizeof(char *));
@@ -31,20 +31,20 @@ void	read_map(t_env *env, t_list **file_lines, int offset)
 	if (env->player.pos.x == -1)
 	{
 		printf("%s Map did not contain a player\n%s", ERROR, NC);
-		exit(1);
+		error("", env);
 	}
 	if (!pc_check_map_valid(env->map.bit_map, env->player.pos, height, wight, env))
 	{
 		printf("%s Map is not surrounded by walls\n%s", ERROR, NC);
-		exit(1);
+		error("", env);
 	}
 }
 
-int pc_count_map_height(t_list **file_lines)
+int pc_count_map_height(t_list **file_lines, t_env *env)
 {
 	t_list	*el;
 	int		size;
-	
+
 	size = 0;
 	el = *file_lines;
 	while (el->next)
@@ -53,7 +53,7 @@ int pc_count_map_height(t_list **file_lines)
 		{
 			printf("%s Map contain forbiden character in line %i : %s%s", ERROR,
 				size, el->content, NC);
-			exit(1);
+			error("", env);
 		}
 		el = el->next;
 		size++;
@@ -65,7 +65,7 @@ int pc_count_map_wight(t_list **file_lines)
 {
 	t_list	*el;
 	size_t	max;
-	
+
 	max = 0;
 	el = *file_lines;
 	while (el->next)
@@ -83,7 +83,7 @@ void pc_get_map(t_env *env, t_list *el, char ***map)
 {
 	int		i;
 	int		j;
-	
+
 	j = 0;
 	while (el->next)
 	{

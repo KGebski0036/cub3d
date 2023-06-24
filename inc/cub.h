@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:24:18 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/24 17:43:39 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/24 18:58:07 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 void	error(char *str, t_env *env);
 int		close_window(t_env *env);
 int		key_press(int key, t_env *env);
+void	pc_clear_2d_table(char **tab);
 
 //       --=[ drawers.c ]=--       //
 void	my_mlx_pixel_put(t_env *med, int color, t_vec2 point);
@@ -47,7 +48,7 @@ int		is_map(char *str);
 
 //       --=[ read_map.c ]=--       //
 void	read_map(t_env *env, t_list	**file_lines, int offset);
-int		pc_count_map_height(t_list	**file_lines);
+int		pc_count_map_height(t_list **file_lines, t_env *env);
 int		pc_count_map_wight(t_list **file_lines);
 void	pc_get_map(t_env *env, t_list *el, char ***map);
 void	pc_get_player(t_env *env, int j, int i, char c);

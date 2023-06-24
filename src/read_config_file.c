@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_config_file.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:04:28 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/24 15:22:48 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/24 18:57:24 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ void pc_read_config(t_env *env, char *path)
 	ft_lstadd_back(file_lines, ft_lstnew(line));
 	offset = pc_get_texture(env, file_lines);
 	if (offset == ft_lstsize(*file_lines) - 1)
-		ft_printf("%s Config did not contain map %s", ERROR, NC);
+		error("Config did not contain map", env);
 	else
 		read_map(env, file_lines, offset - 1);
+	ft_lstclear(file_lines, free);
+	free(file_lines);
 }
 
 int pc_get_texture(t_env *env, t_list **file_lines)
