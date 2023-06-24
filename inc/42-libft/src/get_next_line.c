@@ -3,23 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjackows <cjackows@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 16:00:50 by cjackows          #+#    #+#             */
-/*   Updated: 2023/04/28 14:16:26 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/23 16:46:54 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
-size_t	ft_strlen(const char *str);
 char	*read_file(int fd, char *main_str);
 char	*return_func(char *main_str);
 char	*reset(char *main_str);
 
 /**
  * @brief Read buffer size from fd (up untill string end) and returns a line.
- * 
+ *
  * @param fd file descriptor
  * @return char* Read line: correct behavior
  * NULL: there is nothing else to read, or an error occurred
@@ -37,22 +36,6 @@ char	*get_next_line(int fd)
 	return_str = return_func(main_str[fd]);
 	main_str[fd] = reset(main_str[fd]);
 	return (return_str);
-}
-
-/**
- * @brief Calculates lenght of the passed string
- * 
- * @param str 
- * @return size_t 
- */
-size_t	ft_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
 }
 
 /**
@@ -89,11 +72,11 @@ char	*read_file(int fd, char *main_str)
 /**
  * @brief Function returns everything up to new line or end of the file
  * i = chars before new line or end of the file
- * substr cuts the line in place of index 
+ * substr cuts the line in place of index
  * i++ before return is for new line char or null
  * null creates buffer overflow but ft_substr() has hardcoded check for that
- * @param main_str 
- * @return char* 
+ * @param main_str
+ * @return char*
  */
 char	*return_func(char *main_str)
 {
@@ -113,11 +96,11 @@ char	*return_func(char *main_str)
 /**
  * @brief Function substract returned line from main_str and returns the rest
  * of characters that are left in main_str
- * which later on gets reasigned to the main_function if there 
+ * which later on gets reasigned to the main_function if there
  * still is something left
- * 
- * @param main_str 
- * @return char* 
+ *
+ * @param main_str
+ * @return char*
  */
 char	*reset(char *main_str)
 {

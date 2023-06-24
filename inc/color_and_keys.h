@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:21:41 by cjackows          #+#    #+#             */
-/*   Updated: 2023/06/21 17:35:55 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/22 21:42:07 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define COLOR_AND_KEYS_H
 
 // *	---=[ Printf Macros ]=---
-# define ERROR "\e[48;5;160m[ ERROR ]\e[0m \e[38;5;196m\e[4m"
+# define ERROR "\e[48;5;160m[ ERROR ]\e[0m \e[38;5;196m"
 # define P_DEBUG "\e[48;5;202m              [ DEBUGGING ]            \e[0m"
 # define INFO "\e[48;5;39m[ INFORMATION ]\e[0m \e[38;5;123m"
 # define T_DEBUG "\e[38;5;202m"

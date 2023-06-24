@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:24:18 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/22 19:55:46 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/23 16:49:13 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <time.h>
+# include <fcntl.h>
 # include "mlx.h"
 # include "libft.h"
 # include "color_and_keys.h"
@@ -34,9 +35,16 @@ void	my_mlx_pixel_put(t_env *med, int color, t_vec2 point);
 int		update(t_env *env);
 
 //    --=[ initialization.c ]=--    //
-int		input_checker(int ac, char **av, t_env *env);
+void	input_checker(int ac, char **av);
 void	print_instructions(void);
 void	init_window(t_env *env, int window_width, int window_height);
+
+//   --=[ read_config_file.c ]=--   //
+void	pc_read_config(t_env *env, char *path);
+void	pc_get_texture(t_env *env, t_list **file_lines);
+
+//   --=[ read_map.c ]=--   //
+void	read_map(t_env *env, char **raw_config);
 
 //tmp
 void	ft_debug(char	*str, char	*str2, t_env	*env);

@@ -3,27 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:02:34 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/22 13:12:41 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/23 16:03:38 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int	input_checker(int ac, char **av, t_env *env)
+void	input_checker(int ac, char **av)
 {
-	(void)ac;
-	(void)av;
-	(void)env;
-	print_instructions();
-	return (0);
+	int	fd;
+
+	if (ac != 2)
+		print_instructions();
+	if (ft_strlen(av[1]) < 4 || ft_strncmp(av[1] + ft_strlen(av[1]) - 4, ".cub", 4))
+		print_instructions();
+	fd = open(av[1], O_RDONLY);
+
+	if (fd == -1)
+		print_instructions();
+	close(fd);
 }
 
 void	print_instructions(void)
 {
-	return ;
+	printf("%sPlese provide as an argument one of the map from maps folder \
+example:%s ./cub3d maps/cube.cub%s\n", ERROR, GREEN, NC);
+	exit(0);
 }
 
 void	init_window(t_env *env, int window_width, int window_height)
