@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 16:00:50 by cjackows          #+#    #+#             */
-/*   Updated: 2023/06/23 16:48:40 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/24 14:17:21 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,40 +111,4 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	if (ldst >= dstsize)
 		ldst = dstsize;
 	return (ldst + lsrc);
-}
-
-/**
- * @brief Allocates (with malloc(3)) and returns a new
- * string, which is the result of the concatenation of ’s1’ and ’s2’.
- * @param s1 The prefix string.
- * @param s2 The suffix string.
- * @return Char pointer to the new string.
- * 	NULL if the allocation fails.
- */
-char	*ft_strjoin(char *s1, char *s2)
-{
-	char	*new;
-	size_t	size_s1;
-	size_t	size_s2;
-	size_t	i;
-
-	if (s1 == NULL)
-	{
-		s1 = (char *)malloc(sizeof(char) * 1);
-		s1[0] = 0;
-	}
-	i = 0;
-	size_s1 = ft_strlen(s1);
-	size_s2 = ft_strlen(s2);
-	new = malloc(size_s1 + size_s2 + 1);
-	if (!new)
-		return (NULL);
-	while (i < size_s1 + 1)
-	{
-		((char *)new)[i] = ((char *)s1)[i];
-		i++;
-	}
-	ft_strlcat(new, s2, size_s1 + size_s2 + 1);
-	free(s1);
-	return (new);
 }

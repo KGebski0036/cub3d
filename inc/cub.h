@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:24:18 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/23 16:49:13 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/24 13:54:43 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	init_window(t_env *env, int window_width, int window_height);
 //   --=[ read_config_file.c ]=--   //
 void	pc_read_config(t_env *env, char *path);
 void	pc_get_texture(t_env *env, t_list **file_lines);
+int		is_config_option(char *str);
+int		is_map(char *str);
 
 //   --=[ read_map.c ]=--   //
 void	read_map(t_env *env, char **raw_config);

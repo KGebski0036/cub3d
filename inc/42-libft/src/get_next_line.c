@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 16:00:50 by cjackows          #+#    #+#             */
-/*   Updated: 2023/06/23 16:46:54 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/24 14:17:40 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ char	*get_next_line(int fd)
 {
 	static char	*main_str[1024];
 	char		*return_str;
-
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	main_str[fd] = read_file(fd, main_str[fd]);
@@ -36,6 +35,42 @@ char	*get_next_line(int fd)
 	return_str = return_func(main_str[fd]);
 	main_str[fd] = reset(main_str[fd]);
 	return (return_str);
+}
+
+/**
+ * @brief Allocates (with malloc(3)) and returns a new
+ * string, which is the result of the concatenation of ’s1’ and ’s2’.
+ * @param s1 The prefix string.
+ * @param s2 The suffix string.
+ * @return Char pointer to the new string.
+ * 	NULL if the allocation fails.
+ */
+char	*ft_strjoink(char *s1, char *s2)
+{
+	char	*new;
+	size_t	size_s1;
+	size_t	size_s2;
+	size_t	i;
+
+	if (s1 == NULL)
+	{
+		s1 = (char *)malloc(sizeof(char) * 1);
+		s1[0] = 0;
+	}
+	i = 0;
+	size_s1 = ft_strlen(s1);
+	size_s2 = ft_strlen(s2);
+	new = malloc(size_s1 + size_s2 + 1);
+	if (!new)
+		return (NULL);
+	while (i < size_s1 + 1)
+	{
+		((char *)new)[i] = ((char *)s1)[i];
+		i++;
+	}
+	ft_strlcat(new, s2, size_s1 + size_s2 + 1);
+	free(s1);
+	return (new);
 }
 
 /**
@@ -59,11 +94,12 @@ char	*read_file(int fd, char *main_str)
 		i = read(fd, buffer_str, BUFFER_SIZE);
 		if (i == -1)
 		{
+			ft_printf("aaaaa\n", main_str);
 			free(buffer_str);
 			return (NULL);
 		}
 		buffer_str[i] = '\0';
-		main_str = ft_strjoin(main_str, buffer_str);
+		main_str = ft_strjoink(main_str, buffer_str);
 	}
 	free(buffer_str);
 	return (main_str);
