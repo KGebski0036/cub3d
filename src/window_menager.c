@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_menager.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:02:34 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/21 17:36:53 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/24 15:17:20 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	close_window(t_env *env)
 	if (env->img)
 		mlx_destroy_image(env->mlx, env->img);
 	free(env);
-	ft_putstr_fd("Exit\n", 2);
+	ft_putstr_fd("\nExit\n", 2);
 	exit(0);
 }
 

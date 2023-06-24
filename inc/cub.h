@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:24:18 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/24 13:54:43 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/24 17:43:39 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,26 @@ void	init_window(t_env *env, int window_width, int window_height);
 
 //   --=[ read_config_file.c ]=--   //
 void	pc_read_config(t_env *env, char *path);
-void	pc_get_texture(t_env *env, t_list **file_lines);
+int		pc_get_texture(t_env *env, t_list **file_lines);
 int		is_config_option(char *str);
 int		is_map(char *str);
 
-//   --=[ read_map.c ]=--   //
-void	read_map(t_env *env, char **raw_config);
+//       --=[ read_map.c ]=--       //
+void	read_map(t_env *env, t_list	**file_lines, int offset);
+int		pc_count_map_height(t_list	**file_lines);
+int		pc_count_map_wight(t_list **file_lines);
+void	pc_get_map(t_env *env, t_list *el, char ***map);
+void	pc_get_player(t_env *env, int j, int i, char c);
+
+//       --=[ helpers.c ]=--       //
+void	pc_print_map(t_env *env);
+
+//    --=[ map_validator.c ]=--    //
+int		pc_check_map_valid(char **map, t_vec2 player_pos, int height, int wight, t_env *env);
+int		pc_fill(char **map, int height, int wight, int row, int col);
 
 //tmp
 void	ft_debug(char	*str, char	*str2, t_env	*env);
-void	dummy_filling(t_env *env);
+
 
 #endif

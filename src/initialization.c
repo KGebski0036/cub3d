@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:02:34 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/24 14:18:24 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/24 17:04:52 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,6 @@ void	init_window(t_env *env, int window_width, int window_height)
 		error("Window init failed\n", env);
 	mlx_key_hook(env->window, key_press, env);
 	mlx_hook(env->window, 17, 0, close_window, env);
+	env->player.pos.x = -1;
+	env->player.pos.y = -1;
 }

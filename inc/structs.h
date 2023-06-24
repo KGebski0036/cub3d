@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:49:56 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/24 13:43:19 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/24 17:04:34 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_map
 typedef struct s_player
 {
 	t_vec2	pos;
+	int		rotation;
 }	t_player;
 
 typedef struct s_env

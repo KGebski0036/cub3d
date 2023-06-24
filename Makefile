@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+         #
+#    By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 18:32:51 by cjackows          #+#    #+#              #
-#    Updated: 2023/06/22 12:44:09 by cjackows         ###   ########.fr        #
+#    Updated: 2023/06/24 17:56:41 by kgebski          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ TOTAL_PROGRESS = $(words $(OBJ))
 
 NAME		=	cub3d
 CC			=	cc
-CFLAGS		=	-O3 -Wall -Wextra -Werror
+CFLAGS		=	-O3 -Wall -Wextra -Werror -g
 
 LIBFT		=	./inc/42-libft/libft.a
 LIBFT_DIR	=	./inc/42-libft/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _main.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:19:56 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/23 16:49:05 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/24 17:55:51 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	main(int ac, char **av)
 
 	env = (t_env *)malloc(sizeof(t_env));
 	input_checker(ac, av);
-	init_window(env, WINDOW_W, WINDOW_H);
+	//init_window(env, WINDOW_W, WINDOW_H);
 	pc_read_config(env, av[1]);
-	mlx_loop_hook(env->mlx, update, env);
-	mlx_loop(env->mlx);
+	//mlx_loop_hook(env->mlx, update, env);
+	//mlx_loop(env->mlx);
 	return (0);
 }
