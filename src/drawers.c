@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:02:35 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/25 16:34:02 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/25 18:18:50 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,18 @@ void	my_mlx_pixel_put(t_env* med, int color, t_vec2 point)
 	bpp = med->bits_per_pixel;
 	dst = med->img_addr + ((int)point.y * line_l + (int)point.x * (bpp / 8));
 	*(unsigned int *)dst = color;
+}
+
+unsigned int	my_mlx_pixel_get(t_env* med, t_vec2 point)
+{
+	char	*dst;
+	int		line_l;
+	int		bpp;
+
+	line_l = med->line_length;
+	bpp = med->bits_per_pixel;
+	dst = med->sky_addr + ((int)point.y * line_l + (int)point.x * (bpp / 8));
+	return (*(unsigned int *)dst);
 }
 
 int	update(t_env *env)
@@ -78,7 +90,7 @@ void render(t_env *env)
 		while (point.y < env->window_size.y)
 		{
 			if (point.y < (int)floor(env->window_half_size.y - wallHeight))
-				my_mlx_pixel_put(env, 0xFF0000, point);
+				my_mlx_pixel_put(env, my_mlx_pixel_get(env, point), point);
 			else if (point.y < (int)floor(env->window_half_size.y + wallHeight))
 				my_mlx_pixel_put(env, 0x00FF00, point);
 			else

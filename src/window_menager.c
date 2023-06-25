@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:02:34 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/25 17:16:40 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/25 18:14:44 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	close_window(t_env *env)
 		mlx_destroy_window(env->mlx, env->window);
 	if (env->img)
 		mlx_destroy_image(env->mlx, env->img);
+	if (env->sky)
+		mlx_destroy_image(env->mlx, env->sky);
 	if (env->map.bit_map)
 		pc_clear_2d_table(env->map.bit_map);
 	mlx_destroy_display(env->mlx);
