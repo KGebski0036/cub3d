@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:02:35 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/25 18:18:50 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/25 18:37:26 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ int	update(t_env *env)
 	end = clock();
 	frames++;
 	delta += end - start;
-	if ((delta/(double)CLOCKS_PER_SEC) * 1000.0 > 0.2)
+	if ((delta/(double)CLOCKS_PER_SEC) > 1)
 	{
 		if (result)
 			free(result);
-		result = ft_itoa(frames * 5);
+		result = ft_itoa(frames);
 		frames = 0;
 		delta = 0;
 		// system("clear");
