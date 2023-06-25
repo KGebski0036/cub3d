@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:49:56 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/24 17:04:34 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/25 17:38:55 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,13 @@ typedef struct s_env
 	void			*mlx;
 	void			*window;
 	void			*img;
+	void			*sky;
 	char			*img_addr;
 	t_vec2			window_size;
+	t_vec2			window_half_size;
+	double			raycast_increment;
+	double			raycast_precision;
+	double			half_fov;
 
 	int				bits_per_pixel;
 	int				line_length;

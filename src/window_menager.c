@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:02:34 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/24 19:02:56 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/25 17:16:40 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	error(char *str, t_env *env)
 int	key_press(int key, t_env *env)
 {
 	if (key == KEY_ESC)
-	{
 		close_window(env);
-	}
+	else
+		player_control(key, env);
 	return (0);
 }
 
