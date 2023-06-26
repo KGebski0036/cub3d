@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:24:18 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/25 16:45:14 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/26 13:42:34 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,14 @@ void	my_mlx_pixel_put(t_env *med, int color, t_vec2 point);
 int		update(t_env *env);
 void	render(t_env *env);
 double	get_distance_to_wall(t_env *env, t_vec2 ray, double rayCos, double raySin);
+int		draw_texture(t_texture texture, int wallHeight, int texture_pos, t_vec2 point);
 
 //    --=[ initialization.c ]=--    //
 void	input_checker(int ac, char **av);
 void	print_instructions(void);
 void	init_window(t_env *env);
 void	init_atributes(t_env *env);
+void	pc_init_textures(t_env *env);
 
 //   --=[ read_config_file.c ]=--   //
 void	pc_read_config(t_env *env, char *path);

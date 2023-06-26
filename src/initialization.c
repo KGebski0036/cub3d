@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:02:34 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/25 18:06:39 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/26 15:13:01 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@ example:%s ./cub3d maps/cube.cub%s\n", ERROR, GREEN, NC);
 
 void	init_window(t_env *env)
 {
-	int height = WINDOW_H / 2;
-	int wigth = WINDOW_W;
-
 	init_atributes(env);
 	env->mlx = mlx_init();
 	if (!env->mlx)
@@ -49,11 +46,9 @@ void	init_window(t_env *env)
 	env->img = mlx_new_image(env->mlx, WINDOW_W, WINDOW_H);
 	if (!env->img)
 		error("Img init failed\n", env);
-	env->sky = mlx_xpm_file_to_image(env->mlx, "textures/sky.xpm", &wigth, &height);
-	env->sky_addr = mlx_get_data_addr(env->sky, &env->bits_per_pixel,
-	&env->line_length, &env->endian);
 	env->img_addr = mlx_get_data_addr(env->img, &env->bits_per_pixel,
 	&env->line_length, &env->endian);
+	pc_init_textures(env);
 	mlx_hook(env->window, 2, 1, key_press, env);
 	mlx_hook(env->window, 17, 1, close_window, env);
 }
@@ -71,4 +66,16 @@ void init_atributes(t_env *env)
 	env->player.pos.x = -1;
 	env->player.pos.y = -1;
 	env->map.bit_map = 0;
+}
+
+void pc_init_textures(t_env *env)
+{
+	env->sky.img = mlx_xpm_file_to_image(env->mlx, "textures/sky.xpm", &env->sky.width, &env->sky.height);
+	env->sky.addr = mlx_get_data_addr(env->sky.img, &env->sky.bits_per_pixel, &env->sky.line_length, &env->sky.endian);
+	
+	env->floor.img = mlx_xpm_file_to_image(env->mlx, "textures/sand_floor.xpm", &env->floor.width, &env->floor.height);
+	env->floor.addr = mlx_get_data_addr(env->floor.img, &env->floor.bits_per_pixel, &env->floor.line_length, &env->floor.endian);
+	
+	env->map.north.img = mlx_xpm_file_to_image(env->mlx, "textures/Grey_Brick.xpm", &env->map.north.width, &env->map.north.height);
+	env->map.north.addr = mlx_get_data_addr(env->map.north.img, &env->map.north.bits_per_pixel, &env->map.north.line_length, &env->map.north.endian);
 }

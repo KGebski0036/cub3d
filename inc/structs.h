@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:49:56 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/25 18:04:42 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/26 15:05:49 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,13 @@ typedef struct s_color
 
 typedef struct s_texture
 {
-	t_color	***matx;
+	void	*img;
 	int		height;
 	int		width;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }	t_texture;
 
 typedef struct s_map
@@ -57,8 +61,9 @@ typedef struct s_env
 	void			*window;
 	void			*img;
 	char			*img_addr;
-	void			*sky;
-	void			*sky_addr;
+	t_texture 		sky;
+	t_texture 		floor;
+
 	t_vec2			window_size;
 	t_vec2			window_half_size;
 	double			raycast_increment;

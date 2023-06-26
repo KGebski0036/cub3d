@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:02:35 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/25 18:37:26 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/26 15:17:57 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ void	my_mlx_pixel_put(t_env* med, int color, t_vec2 point)
 	*(unsigned int *)dst = color;
 }
 
-unsigned int	my_mlx_pixel_get(t_env* med, t_vec2 point)
+unsigned int	my_mlx_pixel_get(t_texture texture, t_vec2 point)
 {
 	char	*dst;
 	int		line_l;
 	int		bpp;
 
-	line_l = med->line_length;
-	bpp = med->bits_per_pixel;
-	dst = med->sky_addr + ((int)point.y * line_l + (int)point.x * (bpp / 8));
+	line_l = texture.line_length;
+	bpp = texture.bits_per_pixel;
+	dst = texture.addr + ((int)point.y * line_l + (int)point.x * (bpp / 8));
 	return (*(unsigned int *)dst);
 }
 
@@ -85,17 +85,23 @@ void render(t_env *env)
 		distance = distance * cos(degree_to_radians(ray_angle - env->player.rotation));
 
 		int wallHeight = (int)floor(env->window_half_size.y / distance);
+		// t_texture texture = env->map.north;
+		// int texture_pos = (int)floor(texture.width * (ray.x + ray.y)) % texture.width;
 
 		point.y = 0;
 		while (point.y < env->window_size.y)
 		{
 			if (point.y < (int)floor(env->window_half_size.y - wallHeight))
-				my_mlx_pixel_put(env, my_mlx_pixel_get(env, point), point);
+				my_mlx_pixel_put(env, my_mlx_pixel_get(env->sky, point), point);
 			else if (point.y < (int)floor(env->window_half_size.y + wallHeight))
-				my_mlx_pixel_put(env, 0x00FF00, point);
+				my_mlx_pixel_put(env, 0x1a458a, point);
 			else
-				my_mlx_pixel_put(env, 0x0000FF, point);
-
+			{
+				t_vec2 p;
+				p.x = point.x;
+				p.y = point.y - env->window_half_size.y;
+				my_mlx_pixel_put(env, my_mlx_pixel_get(env->floor, p), point);
+			}
 			point.y++;
 		}
 		point.x++;
@@ -116,4 +122,12 @@ double get_distance_to_wall(t_env *env, t_vec2 ray, double rayCos, double raySin
 		is_wall = env->map.bit_map[(int)floor(ray.y)][(int)floor(ray.x)] == '1';
 	}
 	return (sqrt(pow(env->player.pos.x - ray.x, 2) + pow(env->player.pos.y - ray.y, 2)));
+}
+
+int draw_texture(t_texture texture, int wallHeight, int texture_pos, t_vec2 point)
+{
+	(void)wallHeight;
+	(void)texture_pos;
+	//printf("%d", texture_pos);
+	return my_mlx_pixel_get(texture, point);
 }
