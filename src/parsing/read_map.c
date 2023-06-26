@@ -1,0 +1,123 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/23 16:25:13 by kgebski           #+#    #+#             */
+/*   Updated: 2023/06/24 18:56:24 by kgebski          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub.h"
+
+void	read_map(t_env *env, t_list **file_lines, int offset)
+{
+	t_list	*el;
+	int		height;
+	int		wight;
+	char	**map;
+
+	el = *file_lines;
+	while (el->next && offset--)
+		el = el->next;
+	height = pc_count_map_height(&el, env);
+	wight = pc_count_map_wight(&el);
+	printf("Map size: (%s%i x %i%s)\n", DARKBLUE, wight, height, NC);
+	map = calloc(height + 1, sizeof(char *));
+	pc_get_map(env, el, &map);
+	env->map.bit_map = map;
+	if (env->player.pos.x == -1)
+	{
+		printf("%s Map did not contain a player\n%s", ERROR, NC);
+		error("", env);
+	}
+	if (!pc_check_map_valid(env->map.bit_map, env->player.pos, height, wight, env))
+	{
+		printf("%s Map is not surrounded by walls\n%s", ERROR, NC);
+		error("", env);
+	}
+}
+
+int pc_count_map_height(t_list **file_lines, t_env *env)
+{
+	t_list	*el;
+	int		size;
+
+	size = 0;
+	el = *file_lines;
+	while (el->next)
+	{
+		if (!is_map(el->content))
+		{
+			printf("%s Map contain forbiden character in line %i : %s%s", ERROR,
+				size, el->content, NC);
+			error("", env);
+		}
+		el = el->next;
+		size++;
+	}
+	return (size);
+}
+
+int pc_count_map_wight(t_list **file_lines)
+{
+	t_list	*el;
+	size_t	max;
+
+	max = 0;
+	el = *file_lines;
+	while (el->next)
+	{
+		if (ft_strlen(el->content) > max)
+		{
+			max = ft_strlen(el->content);
+		}
+		el = el->next;
+	}
+	return (max);
+}
+
+void pc_get_map(t_env *env, t_list *el, char ***map)
+{
+	int		i;
+	int		j;
+
+	j = 0;
+	while (el->next)
+	{
+		i = -1;
+		while (el->content[++i])
+		{
+			if (el->content[i] != '1')
+			{
+				if (el->content[i] == 'N' || el->content[i] == 'S'
+					|| el->content[i] == 'W' || el->content[i] == 'E')
+					pc_get_player(env, j, i, el->content[i]);
+				if (el->content[i] == '\n')
+					el->content[i] = '\0';
+				else
+					el->content[i] = '0';
+			}
+		}
+		(*map)[j] = ft_strdup(el->content);
+		j++;
+		el = el->next;
+	}
+	(*map)[j] = 0;
+}
+
+void pc_get_player(t_env *env, int j, int i, char c)
+{
+	env->player.pos.x = i;
+	env->player.pos.y = j;
+	if (c == 'N')
+		env->player.rotation = 0;
+	if (c == 'E')
+		env->player.rotation = 90;
+	if (c == 'S')
+		env->player.rotation = 180;
+	if (c == 'W')
+		env->player.rotation = 270;
+}
