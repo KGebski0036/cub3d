@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_menager.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:02:34 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/25 18:14:44 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/26 12:04:42 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	close_window(t_env *env)
 		mlx_destroy_image(env->mlx, env->sky);
 	if (env->map.bit_map)
 		pc_clear_2d_table(env->map.bit_map);
-	mlx_destroy_display(env->mlx);
+	//! mlx_destroy_display(env->mlx); // this is working onlu on linux
 	free(env);
 	ft_putstr_fd("\nExit\n", 2);
 	exit(0);
