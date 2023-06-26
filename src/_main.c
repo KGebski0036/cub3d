@@ -6,11 +6,11 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:19:56 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/26 16:30:26 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:35:32 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub.h"
+#include "cub.h"
 
 int	main(int ac, char **av)
 {
