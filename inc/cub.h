@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:24:18 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/26 13:42:34 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/26 15:55:53 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,8 @@ void	pc_clear_2d_table(char **tab);
 void	my_mlx_pixel_put(t_env *med, int color, t_vec2 point);
 int		update(t_env *env);
 void	render(t_env *env);
-double	get_distance_to_wall(t_env *env, t_vec2 ray, double rayCos, double raySin);
-int		draw_texture(t_texture texture, int wallHeight, int texture_pos, t_vec2 point);
-
+double	get_distance_to_wall(t_env *env, t_vec2 *ray, double rayCos, double raySin);
+int		draw_texture(t_vec2 point, int wallHeight, int texture_pos, t_texture texture, t_env *env);
 //    --=[ initialization.c ]=--    //
 void	input_checker(int ac, char **av);
 void	print_instructions(void);
