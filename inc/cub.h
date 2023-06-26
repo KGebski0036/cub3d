@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:24:18 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/26 15:55:53 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/26 18:14:33 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ int		draw_texture(t_vec2 point, int wallHeight, int texture_pos, t_texture textu
 //    --=[ initialization.c ]=--    //
 void	input_checker(int ac, char **av);
 void	print_instructions(void);
-void	init_window(t_env *env);
-void	init_atributes(t_env *env);
+void	pc_init_window(t_env *env);
+void	pc_init_atributes(t_env *env);
 void	pc_init_textures(t_env *env);
+void	pc_init_one_texture(t_env *env, t_texture *texture, char *file_path);
 
 //   --=[ read_config_file.c ]=--   //
 void	pc_read_config(t_env *env, char *path);

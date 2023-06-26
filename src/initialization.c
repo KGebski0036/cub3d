@@ -3,57 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:02:34 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/26 15:13:01 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/26 18:10:43 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	input_checker(int ac, char **av)
+void	pc_init_window(t_env *env)
 {
-	int	fd;
-
-	if (ac != 2)
-		print_instructions();
-	if (ft_strlen(av[1]) < 4 || ft_strncmp(av[1] + ft_strlen(av[1]) - 4, ".cub", 4))
-		print_instructions();
-	fd = open(av[1], O_RDONLY);
-	if (fd == -1)
-		print_instructions();
-	close(fd);
-}
-
-void	print_instructions(void)
-{
-	printf("%sPlese provide as an argument one of the map from maps folder \
-example:%s ./cub3d maps/cube.cub%s\n", ERROR, GREEN, NC);
-	exit(0);
-}
-
-void	init_window(t_env *env)
-{
-	init_atributes(env);
+	pc_init_atributes(env);
 	env->mlx = mlx_init();
 	if (!env->mlx)
 		error("Mlx init failed\n", env);
 	env->window = mlx_new_window(env->mlx, env->window_size.x,
-		env->window_size.y, "PentaCode Cub3D");
+			env->window_size.y, "PentaCode Cub3D");
 	if (!env->window)
 		error("Window init failed\n", env);
 	env->img = mlx_new_image(env->mlx, WINDOW_W, WINDOW_H);
 	if (!env->img)
 		error("Img init failed\n", env);
 	env->img_addr = mlx_get_data_addr(env->img, &env->bits_per_pixel,
-	&env->line_length, &env->endian);
+			&env->line_length, &env->endian);
 	pc_init_textures(env);
 	mlx_hook(env->window, 2, 1, key_press, env);
 	mlx_hook(env->window, 17, 1, close_window, env);
 }
 
-void init_atributes(t_env *env)
+void	pc_init_atributes(t_env *env)
 {
 
 	env->window_size.y = WINDOW_H;
@@ -68,14 +47,20 @@ void init_atributes(t_env *env)
 	env->map.bit_map = 0;
 }
 
-void pc_init_textures(t_env *env)
+void	pc_init_textures(t_env *env)
 {
-	env->sky.img = mlx_xpm_file_to_image(env->mlx, "textures/sky.xpm", &env->sky.width, &env->sky.height);
-	env->sky.addr = mlx_get_data_addr(env->sky.img, &env->sky.bits_per_pixel, &env->sky.line_length, &env->sky.endian);
-	
-	env->floor.img = mlx_xpm_file_to_image(env->mlx, "textures/sand_floor.xpm", &env->floor.width, &env->floor.height);
-	env->floor.addr = mlx_get_data_addr(env->floor.img, &env->floor.bits_per_pixel, &env->floor.line_length, &env->floor.endian);
-	
-	env->map.north.img = mlx_xpm_file_to_image(env->mlx, "textures/Grey_Brick.xpm", &env->map.north.width, &env->map.north.height);
-	env->map.north.addr = mlx_get_data_addr(env->map.north.img, &env->map.north.bits_per_pixel, &env->map.north.line_length, &env->map.north.endian);
+	pc_init_one_texture(env, &env->sky, "textures/sky.xpm");
+	pc_init_one_texture(env, &env->floor, "textures/sand_floor.xpm");
+	pc_init_one_texture(env, &env->map.north, "textures/Grey_Brick.xpm");
+	pc_init_one_texture(env, &env->map.south, "textures/Grey_Brick.xpm");
+	pc_init_one_texture(env, &env->map.west, "textures/Grey_Brick.xpm");
+	pc_init_one_texture(env, &env->map.east, "textures/Grey_Brick.xpm");
+}
+
+void	pc_init_one_texture(t_env *env, t_texture *texture, char *file_path)
+{
+	texture->img = mlx_xpm_file_to_image(env->mlx, file_path, &texture->width,
+			&texture->height);
+	texture->addr = mlx_get_data_addr(texture->img, &texture->bits_per_pixel,
+			&texture->line_length, &texture->endian);
 }
