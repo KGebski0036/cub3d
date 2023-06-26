@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:02:34 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/26 15:13:01 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/26 15:53:36 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	input_checker(int ac, char **av)
 
 void	print_instructions(void)
 {
-	printf("%sPlese provide as an argument one of the map from maps folder \
+	printf("%sPlease provide as an argument one of the maps from maps folder \
 example:%s ./cub3d maps/cube.cub%s\n", ERROR, GREEN, NC);
 	exit(0);
 }
