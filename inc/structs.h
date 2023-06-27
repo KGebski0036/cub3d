@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:49:56 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/26 15:05:49 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/27 21:04:17 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,6 @@ typedef struct s_vec2
 	double	x;
 	double	y;
 }	t_vec2;
-
-typedef struct s_color
-{
-	unsigned char	b;
-	unsigned char	g;
-	unsigned char	r;
-	unsigned char	a;
-}	t_color;
 
 typedef struct s_texture
 {
@@ -40,13 +32,13 @@ typedef struct s_texture
 
 typedef struct s_map
 {
-	char		**bit_map;
-	t_texture	north;
-	t_texture	south;
-	t_texture	west;
-	t_texture	east;
-	t_color		ceiling;
-	t_color		floor;
+	char			**bit_map;
+	t_texture		north;
+	t_texture		south;
+	t_texture		west;
+	t_texture		east;
+	unsigned int	ceiling;
+	unsigned int	floor;
 }	t_map;
 
 typedef struct s_player

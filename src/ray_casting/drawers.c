@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:02:35 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/27 20:24:17 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/27 21:13:52 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,12 @@ void render(t_env *env)
 		while (point.y < env->window_size.y)
 		{
 			if (point.y <= (int)floor(env->window_half_size.y - wallHeight))
-				my_mlx_pixel_put(env, my_mlx_pixel_get(env->sky, point), point);
+			{
+				if (env->map.ceiling == 0)
+					my_mlx_pixel_put(env, my_mlx_pixel_get(env->sky, point), point);
+				else
+					my_mlx_pixel_put(env, env->map.ceiling, point);
+			}
 			else if (point.y <= (int)floor(env->window_half_size.y + wallHeight))
 			{
 				double i_inc = ((double)texture.height / (wallHeight * 2));
@@ -107,17 +112,22 @@ void render(t_env *env)
 			}
 			else
 			{
-				t_vec2 p;
-				p.x = point.x;
-				p.y = point.y - env->window_half_size.y;
-				my_mlx_pixel_put(env, my_mlx_pixel_get(env->floor, p), point);
+				if (env->map.floor == 0)
+				{
+					t_vec2 p;
+					p.x = point.x;
+					p.y = point.y - env->window_half_size.y;
+					my_mlx_pixel_put(env, my_mlx_pixel_get(env->floor, p), point);
+				}	
+				else
+					my_mlx_pixel_put(env, env->map.floor, point);
+
 			}
 			point.y++;
 		}
 		point.x++;
 		ray_angle += env->raycast_increment;
 	}
-	//exit(1);
 }
 
 double get_distance_to_wall(t_env *env, t_vec2 *ray, double rayCos, double raySin)
@@ -153,8 +163,6 @@ int draw_texture(t_vec2 point, int wallHeight, int texture_pos, t_texture textur
 
 t_texture	pc_get_correct_side(t_env *env, t_vec2 ray)
 {
-	// printf("ray-> x: %f y: %f \n", round(ray.x), round(ray.y));
-	// printf("block cords: x: %i y: %i\n\n", (int)floor(ray.x), (int)floor(ray.y));
 	if (round(ray.y * 256) == floor(ray.y) * 256 && floor(ray.y) != 0 && env->map.bit_map[(int)floor(ray.y) - 1][(int)floor(ray.x)] != '1')
 		return (env->map.north);
 	if (round((ray.x) * 256) == floor(ray.x) * 256 )

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:02:34 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/27 20:02:05 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/27 21:11:09 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	pc_init_atributes(t_env *env)
 	env->player.pos.x = -1;
 	env->player.pos.y = -1;
 	env->map.bit_map = 0;
+	env->map.floor = 0;
+	env->map.ceiling = 0;
 }
 
 void	pc_init_window(t_env *env)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:24:18 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/27 19:58:54 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/27 21:07:44 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ void		pc_read_map_file(t_env *env, char *path);
 int			pc_get_texture(t_env *env, t_list **file_lines);
 int			is_config_option(char *str);
 int			is_map(char *str);
+void		pc_add_config_option(t_env *env, char *option);
+unsigned int	pc_decode_color(t_env *env, char *option);
+
 
 //       --=[ read_map.c ]=--       //
 void		pc_map_validation(t_env *env, t_list	**file_lines, int offset);

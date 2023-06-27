@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:04:28 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/27 17:16:07 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/27 21:43:29 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	pc_get_texture(t_env *env, t_list **file_lines)
 	int		i;
 
 	el = *file_lines;
-	(void)env;
 	offset = 0;
 	while (el->next)
 	{
@@ -61,7 +60,7 @@ int	pc_get_texture(t_env *env, t_list **file_lines)
 			continue ;
 		}
 		else if (ft_strlen(el->content) > 4 && is_config_option(el->content + i))
-			ft_printf("New config option: %s%s%s", GREEN, el->content, NC);
+			pc_add_config_option(env, el->content);
 		else if (is_map(el->content))
 			break;
 		else
@@ -92,4 +91,63 @@ int	is_map(char *str)
 		i++;
 	}
 	return (1);
+}
+
+void pc_add_config_option(t_env *env, char *option)
+{
+	if (!ft_strncmp(option, "F ", 2) || !ft_strncmp(option, "C ", 2))
+	{
+		unsigned int color = pc_decode_color(env, option);
+		
+		if (!ft_strncmp(option, "F ", 2))
+			env->map.floor = color;
+		else
+			env->map.ceiling = color;
+		ft_printf("New color added: %s%s%s", GREEN, option, NC);
+	}
+	else
+	{
+		t_texture	*texture;
+		
+		if (!ft_strncmp(option, "NO ", 3))
+			texture = &env->map.north;
+		if (!ft_strncmp(option, "SO ", 3))
+			texture = &env->map.south;
+		if (!ft_strncmp(option, "WE ", 3))
+			texture = &env->map.west;
+		if (!ft_strncmp(option, "EA ", 3))
+			texture = &env->map.east;
+		option += 2;
+		while (*(++option) == ' ')
+			;
+		ft_printf("|%s|\n", ft_strtrim(option, " \n"));
+		pc_init_one_texture(env, texture, ft_strtrim(option, " \n"));
+		ft_printf("New texture added: %s%s%s", GREEN, option, NC);
+	}
+}
+
+unsigned int	pc_decode_color(t_env *env, char *option)
+{
+	unsigned int	result;
+	char			*tmp;
+	int				i = 0;
+	int				k = 0;
+	
+	result = 0;
+	while (k < 3)
+	{
+		option += i;
+		i = 0;
+		while (!ft_isdigit(*(++option)))
+			;
+		while (ft_isdigit(option[i]))
+			i++;
+		tmp = ft_substr(option, 0, i);
+		if (!ft_isnumber(tmp) && ft_atoi(tmp) >= 0 && ft_atoi(tmp) <= 255)
+			pc_error("One of color argument is not a valid number", env);
+		result <<= 8;
+		result += ft_atoi(tmp);
+		k++;
+	}
+	return result;
 }
