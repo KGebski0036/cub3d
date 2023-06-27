@@ -6,7 +6,7 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:02:34 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/27 19:54:51 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/27 20:02:05 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,7 @@ void	pc_init_atributes(t_env *env)
 	env->map.bit_map = 0;
 }
 
-void	pc_init_textures(t_env *env)
-{
-	pc_init_one_texture(env, &env->sky, "textures/sky.xpm");
-	pc_init_one_texture(env, &env->floor, "textures/sand_floor.xpm");
-	pc_init_one_texture(env, &env->map.north, "textures/Grey_Brick.xpm");
-	pc_init_one_texture(env, &env->map.south, "textures/Wooden-wall.xpm");
-	pc_init_one_texture(env, &env->map.west, "textures/wall_metal.xpm");
-	pc_init_one_texture(env, &env->map.east, "textures/wall_mossy.xpm");
-}
-
-void	pc_init_one_texture(t_env *env, t_texture *texture, char *file_path)
+void	pc_init_window(t_env *env)
 {
 	env->mlx = mlx_init();
 	if (!env->mlx)
