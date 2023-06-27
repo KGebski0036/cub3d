@@ -6,13 +6,12 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:04:28 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/27 16:21:52 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/27 17:16:07 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-//! Potential leak with file_lines and file not containing any map
 void	pc_read_map_file(t_env *env, char *path)
 {
 	int		fd;

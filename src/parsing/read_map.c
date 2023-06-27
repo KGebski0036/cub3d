@@ -6,7 +6,7 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:25:13 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/27 16:53:14 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/27 17:16:49 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	pc_map_validation(t_env *env, t_list **file_lines, int offset)
 	height = pc_count_map_height(&el, env);
 	wight = pc_count_map_wight(&el);
 	printf("Map size: (%s%i x %i%s)\n", DARKBLUE, wight, height, NC);
-	map = calloc(height + 1, sizeof(char *)); //! FORBIDEN FUNCTION
+	map = ft_calloc(height + 1, sizeof(char *));
 	pc_get_map(env, el, &map);
 	env->map.bit_map = map;
 	if (env->player.pos.x == -1)
