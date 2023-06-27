@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:02:35 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/27 19:40:08 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/27 20:24:17 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,10 @@ void render(t_env *env)
 			else if (point.y <= (int)floor(env->window_half_size.y + wallHeight))
 			{
 				double i_inc = ((double)texture.height / (wallHeight * 2));
-				// if (wallHeight > env->window_half_size.y && i == 0)
-				// {
-				// 	i = floor(((double)(wallHeight) - env->window_half_size.y) / 6);
-				// }
+				if (wallHeight > env->window_half_size.y && i == 0)
+				{
+					i = (((double)(wallHeight) - env->window_half_size.y) * i_inc);
+				}
 				unsigned int color = my_mlx_pixel_get(texture, (t_vec2){texture_pos, floor(i)});
 				my_mlx_pixel_put(env, color, (t_vec2){point.x, point.y});
 				i+=i_inc;
