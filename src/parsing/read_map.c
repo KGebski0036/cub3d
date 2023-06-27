@@ -6,7 +6,7 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:25:13 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/27 17:16:49 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/27 17:22:29 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,9 @@ void	pc_map_validation(t_env *env, t_list **file_lines, int offset)
 	pc_get_map(env, el, &map);
 	env->map.bit_map = map;
 	if (env->player.pos.x == -1)
-	{
-		pc_error("", env);
-	}
+		return (pc_error("Map did not contain a player", env));
 	if (!pc_check_map(env->map.bit_map, env->player.pos, height, wight, env))
-	{
-		printf("%s Map is not surrounded by walls\n%s", ERROR, NC);
-		pc_error("", env);
-	}
+		return (pc_error("Map is not surrounded by walls", env));
 }
 
 int	pc_count_map_height(t_list **file_lines, t_env *env)
@@ -50,8 +45,8 @@ int	pc_count_map_height(t_list **file_lines, t_env *env)
 	{
 		if (!is_map(el->content))
 		{
-			printf("%s Map contain forbiden character in line %i : %s%s", ERROR,
-				size, el->content, NC);
+			ft_printf("%s Map contain forbiden character in line %i : %s%s",
+			ERROR, size, el->content, NC);
 			pc_error("", env);
 		}
 		el = el->next;
