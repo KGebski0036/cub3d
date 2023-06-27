@@ -6,7 +6,7 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:25:13 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/27 17:22:29 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/27 17:22:50 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	pc_count_map_height(t_list **file_lines, t_env *env)
 		if (!is_map(el->content))
 		{
 			ft_printf("%s Map contain forbiden character in line %i : %s%s",
-			ERROR, size, el->content, NC);
+				ERROR, size, el->content, NC);
 			pc_error("", env);
 		}
 		el = el->next;
