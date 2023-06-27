@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_and_keys.h                                   :+:      :+:    :+:   */
+/*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:21:41 by cjackows          #+#    #+#             */
-/*   Updated: 2023/06/22 21:42:07 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/27 14:17:52 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_AND_KEYS_H
-# define COLOR_AND_KEYS_H
+#ifndef COLORS_H
+# define COLORS_H
 
 // *	---=[ Printf Macros ]=---
 # define ERROR "\e[48;5;160m[ ERROR ]\e[0m \e[38;5;196m"
@@ -29,13 +29,4 @@
 # define STRIKETHROUGH "\e[9m"
 # define RED "\e[38;5;160m"
 
-# ifndef KEYS
-#  define KEY_ESC = 53
-#  define KEY_LEFT = 123
-#  define KEY_RIGHT = 124
-#  define KEY_W = 13
-#  define KEY_A = 0
-#  define KEY_S = 1
-#  define KEY_D = 2
-# endif
 #endif
