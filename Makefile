@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+         #
+#    By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 18:32:51 by cjackows          #+#    #+#              #
-#    Updated: 2023/06/26 16:49:52 by kgebski          ###   ########.fr        #
+#    Updated: 2023/06/26 18:34:05 by cjackows         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ else
 						-DKEY_W=13 -DKEY_A=0 -DKEY_S=1 -DKEY_D=2 -DKEYS
 endif
 
-SRC			=	$(wildcard $(SRC_DIR)/*.c) #TODO
+SRC			=	$(shell find $(SRC_DIR) -name '*.c')#TODO
 HDRS 		=	-I$(LIBFT_DIR)inc -I$(MLX_DIR) -I$(HDRS_DIR)
 LIBS		=	-L$(LIBFT_DIR) -L$(MLX_DIR) $(MLX_FLAGS)
 OBJ				=$(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))

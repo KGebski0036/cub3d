@@ -6,7 +6,7 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 16:39:04 by cjackows          #+#    #+#             */
-/*   Updated: 2023/04/03 11:47:49 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/27 14:23:55 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	format_check(va_list args, const char format_specifier)
 {
 	if (format_specifier == 'c')
-		return ((ft_print(va_arg(args, int), "420vibes")));
+		return ((ft_print(va_arg(args, int), "ignore")));
 	else if (format_specifier == 's')
 		return (ft_print(1, va_arg(args, char *)));
 	else if (format_specifier == 'd' || format_specifier == 'i')
@@ -28,8 +28,6 @@ static int	format_check(va_list args, const char format_specifier)
 		return (ft_putnbr("x0123456789ABCDEF", 16, va_arg(args, unsigned int)));
 	else if (format_specifier == 'p')
 		return (ft_pointer("p0123456789abcdef", va_arg(args, size_t)));
-	else if (format_specifier == '%')
-		return (write(1, &format_specifier, 1));
 	else
 	{
 		write(1, "%", 1);

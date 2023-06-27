@@ -3,38 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:02:34 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/27 14:23:06 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/27 19:54:51 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	pc_init_window(t_env *env)
-{
-	pc_init_atributes(env);
-	env->mlx = mlx_init();
-	if (!env->mlx)
-		error("Mlx init failed\n", env);
-	env->window = mlx_new_window(env->mlx, env->window_size.x,
-			env->window_size.y, "PentaCode Cub3D");
-	if (!env->window)
-		error("Window init failed\n", env);
-	env->img = mlx_new_image(env->mlx, WINDOW_W, WINDOW_H);
-	if (!env->img)
-		error("Img init failed\n", env);
-	env->img_addr = mlx_get_data_addr(env->img, &env->bits_per_pixel,
-			&env->line_length, &env->endian);
-	pc_init_textures(env);
-	mlx_hook(env->window, 2, 1, key_press, env);
-	mlx_hook(env->window, 17, 1, close_window, env);
-}
-
 void	pc_init_atributes(t_env *env)
 {
-
 	env->window_size.y = WINDOW_H;
 	env->window_size.x = WINDOW_W;
 	env->window_half_size.y = WINDOW_H / 2;
@@ -59,8 +38,18 @@ void	pc_init_textures(t_env *env)
 
 void	pc_init_one_texture(t_env *env, t_texture *texture, char *file_path)
 {
-	texture->img = mlx_xpm_file_to_image(env->mlx, file_path, &texture->width,
-			&texture->height);
-	texture->addr = mlx_get_data_addr(texture->img, &texture->bits_per_pixel,
-			&texture->line_length, &texture->endian);
+	env->mlx = mlx_init();
+	if (!env->mlx)
+		return (pc_error("MLX init failed\n", env));
+	env->window = mlx_new_window(env->mlx, env->window_size.x,
+			env->window_size.y, "PentaCode Cub3D");
+	if (!env->window)
+		return (pc_error("WINDOW init failed\n", env));
+	env->img = mlx_new_image(env->mlx, WINDOW_W, WINDOW_H);
+	if (!env->img)
+		return (pc_error("IMG init failed\n", env));
+	env->img_addr = mlx_get_data_addr(env->img, &env->bits_per_pixel,
+			&env->line_length, &env->endian);
+	mlx_hook(env->window, 2, 1, key_press, env);
+	mlx_hook(env->window, 17, 1, pc_close_window, env);
 }

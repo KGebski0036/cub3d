@@ -3,57 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   window_menager.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:02:34 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/26 13:03:43 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/27 17:07:08 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int	close_window(t_env *env)
-{
-	if (env->window)
-		mlx_destroy_window(env->mlx, env->window);
-	if (env->img)
-		mlx_destroy_image(env->mlx, env->img);
-	if (env->sky.img)
-		mlx_destroy_image(env->mlx, env->sky.img);
-	if (env->map.north.img)
-		mlx_destroy_image(env->mlx, env->map.north.img);
-	if (env->map.bit_map)
-		pc_clear_2d_table(env->map.bit_map);
-	//! mlx_destroy_display(env->mlx); // this is working onlu on linux
-	free(env);
-	ft_putstr_fd("\nExit\n", 2);
-	exit(0);
-}
-
-void	error(char *str, t_env *env)
-{
-	ft_putstr_fd(str, 2);
-	close_window(env);
-}
-
 int	key_press(int key, t_env *env)
 {
 	if (key == KEY_ESC)
-		close_window(env);
+	{
+		pc_free_stuff(env);
+		pc_close_window(env, 0);
+	}
 	else
 		player_control(key, env);
 	return (0);
 }
 
-void pc_clear_2d_table(char **tab)
+int	pc_close_window(t_env *env, int failure)
 {
-	int i;
-
-	i = -1;
-	if (tab)
-	{
-		while (tab[++i])
-			free(tab[i]);
-		free(tab);
-	}
+	if (env->window)
+		mlx_destroy_window(env->mlx, env->window);
+	if (env->img)
+		mlx_destroy_image(env->mlx, env->img);
+	exit(failure);
 }
