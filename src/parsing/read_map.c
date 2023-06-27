@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:25:13 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/24 18:56:24 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/27 16:53:14 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	read_map(t_env *env, t_list **file_lines, int offset)
+void	pc_map_validation(t_env *env, t_list **file_lines, int offset)
 {
 	t_list	*el;
 	int		height;
@@ -25,22 +25,21 @@ void	read_map(t_env *env, t_list **file_lines, int offset)
 	height = pc_count_map_height(&el, env);
 	wight = pc_count_map_wight(&el);
 	printf("Map size: (%s%i x %i%s)\n", DARKBLUE, wight, height, NC);
-	map = calloc(height + 1, sizeof(char *));
+	map = calloc(height + 1, sizeof(char *)); //! FORBIDEN FUNCTION
 	pc_get_map(env, el, &map);
 	env->map.bit_map = map;
 	if (env->player.pos.x == -1)
 	{
-		printf("%s Map did not contain a player\n%s", ERROR, NC);
-		error("", env);
+		pc_error("", env);
 	}
-	if (!pc_check_map_valid(env->map.bit_map, env->player.pos, height, wight, env))
+	if (!pc_check_map(env->map.bit_map, env->player.pos, height, wight, env))
 	{
 		printf("%s Map is not surrounded by walls\n%s", ERROR, NC);
-		error("", env);
+		pc_error("", env);
 	}
 }
 
-int pc_count_map_height(t_list **file_lines, t_env *env)
+int	pc_count_map_height(t_list **file_lines, t_env *env)
 {
 	t_list	*el;
 	int		size;
@@ -53,7 +52,7 @@ int pc_count_map_height(t_list **file_lines, t_env *env)
 		{
 			printf("%s Map contain forbiden character in line %i : %s%s", ERROR,
 				size, el->content, NC);
-			error("", env);
+			pc_error("", env);
 		}
 		el = el->next;
 		size++;
@@ -61,7 +60,7 @@ int pc_count_map_height(t_list **file_lines, t_env *env)
 	return (size);
 }
 
-int pc_count_map_wight(t_list **file_lines)
+int	pc_count_map_wight(t_list **file_lines)
 {
 	t_list	*el;
 	size_t	max;
