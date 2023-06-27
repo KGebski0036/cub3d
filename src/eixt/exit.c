@@ -6,7 +6,7 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:32:37 by cjackows          #+#    #+#             */
-/*   Updated: 2023/06/27 16:58:31 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/27 17:04:36 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,25 @@ static void	pc_clear_2d_table(char **tab);
 void	pc_error(char *str, t_env *env)
 {
 	ft_printf("%s %s\n%s", ERROR, str, NC);
-	free_stuff(env);
-	close_window(env, 1);
+	pc_free_stuff(env);
+	pc_close_window(env, 1);
 }
 
-void	free_stuff(t_env *env)
+void	pc_free_stuff(t_env *env)
 {
 	if (env->map.bit_map)
 		pc_clear_2d_table(env->map.bit_map);
-	if(env->sky.img)
+	if (env->sky.img)
 		mlx_destroy_image(env->mlx, env->sky.img);
-	if(env->floor.img)
+	if (env->floor.img)
 		mlx_destroy_image(env->mlx, env->floor.img);
-	if(env->map.north.img)
+	if (env->map.north.img)
 		mlx_destroy_image(env->mlx, env->map.north.img);
-	if(env->map.south.img)
+	if (env->map.south.img)
 		mlx_destroy_image(env->mlx, env->map.south.img);
-	if(env->map.west.img)
+	if (env->map.west.img)
 		mlx_destroy_image(env->mlx, env->map.west.img);
-	if(env->map.east.img)
+	if (env->map.east.img)
 		mlx_destroy_image(env->mlx, env->map.east.img);
 }
 

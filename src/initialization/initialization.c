@@ -6,7 +6,7 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:02:34 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/27 16:21:50 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/27 17:05:37 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ void	pc_init_window(t_env *env)
 	env->img_addr = mlx_get_data_addr(env->img, &env->bits_per_pixel,
 			&env->line_length, &env->endian);
 	mlx_hook(env->window, 2, 1, key_press, env);
-	mlx_hook(env->window, 17, 1, close_window, env);
+	mlx_hook(env->window, 17, 1, pc_close_window, env);
 }

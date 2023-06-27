@@ -6,7 +6,7 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:19:56 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/27 16:56:36 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/27 17:09:17 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	main(int ac, char **av)
 	pc_init_window(&env);
 	pc_init_textures(&env);
 
-	// pc_read_map_file(env, av[1]);
+	pc_read_map_file(env, av[1]);
 
-	// mlx_loop_hook(env->mlx, update, env);
+	mlx_loop_hook(env->mlx, update, env);
 	mlx_loop(env.mlx);
 	return (0);
 }
