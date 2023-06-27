@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _main.c                                            :+:      :+:    :+:   */
+/*   window_menager.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/02 11:19:56 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/26 16:30:26 by cjackows         ###   ########.fr       */
+/*   Created: 2023/06/02 12:02:34 by kgebski           #+#    #+#             */
+/*   Updated: 2023/06/27 16:43:44 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub.h"
+#include "cub.h"
 
-int	main(int ac, char **av)
+int	key_press(int key, t_env *env)
 {
-	t_env	*env;
-
-	input_checker(ac, av);
-	env = (t_env *)malloc(sizeof(t_env));
-	pc_init_window(env);
-	pc_read_config(env, av[1]);
-	mlx_loop_hook(env->mlx, update, env);
-	mlx_loop(env->mlx);
+	if (key == KEY_ESC)
+	{
+		pc_free_stuff(env, 0);
+		close_window(env, 0);
+	}
+	else
+		player_control(key, env);
 	return (0);
+}
+
+int	close_window(t_env *env, int failure)
+{
+	if (env->window)
+		mlx_destroy_window(env->mlx, env->window);
+	if (env->img)
+		mlx_destroy_image(env->mlx, env->img);
+	if (env->map.bit_map)
+		pc_clear_2d_table(env->map.bit_map);
+	exit(failure);
 }

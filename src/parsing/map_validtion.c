@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validator.c                                    :+:      :+:    :+:   */
+/*   map_validtion.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:08:12 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/24 17:54:18 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/26 19:01:45 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int	pc_check_map_valid(char **map, t_vec2 player_pos, int height, int wight, t_env *env)
+int	pc_check_map(char **map, t_vec2 p_pos, int height, int wight, t_env *env)
 {
 	int	result;
 
-	result = pc_fill(map, height, wight, (int)player_pos.y, (int)player_pos.x);
+	result = pc_fill(map, height, wight, (int)p_pos.y, (int)p_pos.x);
 	pc_print_map(env);
 	return (result);
 }
 
-int pc_fill(char **map, int height, int wight, int row, int col)
+int	pc_fill(char **map, int height, int wight, int row, int col)
 {
 	int	i;
 
@@ -40,7 +40,7 @@ int pc_fill(char **map, int height, int wight, int row, int col)
 	i += pc_fill(map, height, wight, row +1, col);
 	i += pc_fill(map, height, wight, row, col - 1);
 	i += pc_fill(map, height, wight, row, col + 1);
-	
+
 	if (i != 4)
 		return (0);
 	return (1);
