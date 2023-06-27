@@ -6,7 +6,7 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:24:18 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/27 14:17:12 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/27 16:44:42 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@
 # define MOVMENT_SPEED 0.2
 # define ROTATION_SPEED 10
 
+//       --=[ helpers.c ]=--       //
+
+void	pc_print_map(t_env *env);
+
+//       --=[ exit/exit.c ]=--       //
+void	pc_error(char *str, t_env *env);
+int		free_stuff(t_env *env);
+
 
 //    --=[ initialization/input_validation.c ]=--    //
 void	pc_input_checker(int ac, char **av);
@@ -43,10 +51,8 @@ void	pc_init_textures(t_env *env);
 void	pc_init_one_texture(t_env *env, t_texture *texture, char *file_path);
 
 //    --=[ window_menager.c ]=--    //
-void	error(char *str, t_env *env);
-int		close_window(t_env *env);
 int		key_press(int key, t_env *env);
-void	pc_clear_2d_table(char **tab);
+int		close_window(t_env *env, int failure);
 
 //       --=[ drawers.c ]=--       //
 void	my_mlx_pixel_put(t_env *med, int color, t_vec2 point);
@@ -54,8 +60,6 @@ int		update(t_env *env);
 void	render(t_env *env);
 double	get_distance_to_wall(t_env *env, t_vec2 *ray, double rayCos, double raySin);
 int		draw_texture(t_vec2 point, int wallHeight, int texture_pos, t_texture texture, t_env *env);
-
-
 
 //   --=[ parsing/read_map_file.c ]=--   //
 void	pc_read_map_file(t_env *env, char *path);
@@ -70,8 +74,6 @@ int		pc_count_map_wight(t_list **file_lines);
 void	pc_get_map(t_env *env, t_list *el, char ***map);
 void	pc_get_player(t_env *env, int j, int i, char c);
 
-//       --=[ helpers.c ]=--       //
-void	pc_print_map(t_env *env);
 
 //    --=[ map_validator.c ]=--    //
 int		pc_check_map(char **map, t_vec2 player_pos, int height, int wight, t_env *env);
