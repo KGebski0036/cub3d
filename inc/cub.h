@@ -6,7 +6,7 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:24:18 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/27 16:44:42 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/27 16:57:44 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	pc_print_map(t_env *env);
 
 //       --=[ exit/exit.c ]=--       //
 void	pc_error(char *str, t_env *env);
-int		free_stuff(t_env *env);
+void	free_stuff(t_env *env);
 
 
 //    --=[ initialization/input_validation.c ]=--    //
