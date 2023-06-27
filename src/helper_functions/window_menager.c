@@ -6,7 +6,7 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:02:34 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/27 16:43:44 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/27 16:58:47 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,5 @@ int	close_window(t_env *env, int failure)
 		mlx_destroy_window(env->mlx, env->window);
 	if (env->img)
 		mlx_destroy_image(env->mlx, env->img);
-	if (env->map.bit_map)
-		pc_clear_2d_table(env->map.bit_map);
 	exit(failure);
 }

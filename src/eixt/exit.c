@@ -6,7 +6,7 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:32:37 by cjackows          #+#    #+#             */
-/*   Updated: 2023/06/27 16:46:36 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/27 16:58:31 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	pc_error(char *str, t_env *env)
 	close_window(env, 1);
 }
 
-int	free_stuff(t_env *env)
+void	free_stuff(t_env *env)
 {
 	if (env->map.bit_map)
 		pc_clear_2d_table(env->map.bit_map);
