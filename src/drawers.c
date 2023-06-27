@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:02:35 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/26 17:46:19 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/27 19:40:08 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void render(t_env *env)
 		distance = distance * cos(degree_to_radians(ray_angle - env->player.rotation));
 
 		int wallHeight = (int)floor(env->window_half_size.y / distance);
-		t_texture texture = env->map.north;
+		t_texture texture = pc_get_correct_side(env, ray);
 		double texture_pos = floor((int)(texture.width * (ray.x + ray.y)) % texture.width);
 
 		point.y = 0;
@@ -97,10 +97,13 @@ void render(t_env *env)
 			else if (point.y <= (int)floor(env->window_half_size.y + wallHeight))
 			{
 				double i_inc = ((double)texture.height / (wallHeight * 2));
+				// if (wallHeight > env->window_half_size.y && i == 0)
+				// {
+				// 	i = floor(((double)(wallHeight) - env->window_half_size.y) / 6);
+				// }
 				unsigned int color = my_mlx_pixel_get(texture, (t_vec2){texture_pos, floor(i)});
 				my_mlx_pixel_put(env, color, (t_vec2){point.x, point.y});
 				i+=i_inc;
-				//point.y += draw_texture(point, wallHeight, (int)texture_pos, texture, env);
 			}
 			else
 			{
@@ -114,6 +117,7 @@ void render(t_env *env)
 		point.x++;
 		ray_angle += env->raycast_increment;
 	}
+	//exit(1);
 }
 
 double get_distance_to_wall(t_env *env, t_vec2 *ray, double rayCos, double raySin)
@@ -145,4 +149,18 @@ int draw_texture(t_vec2 point, int wallHeight, int texture_pos, t_texture textur
 	}
 	
 	return (int)wallHeight;
+}
+
+t_texture	pc_get_correct_side(t_env *env, t_vec2 ray)
+{
+	// printf("ray-> x: %f y: %f \n", round(ray.x), round(ray.y));
+	// printf("block cords: x: %i y: %i\n\n", (int)floor(ray.x), (int)floor(ray.y));
+	if (round(ray.y * 256) == floor(ray.y) * 256 && floor(ray.y) != 0 && env->map.bit_map[(int)floor(ray.y) - 1][(int)floor(ray.x)] != '1')
+		return (env->map.north);
+	if (round((ray.x) * 256) == floor(ray.x) * 256 )
+		return (env->map.west);
+	if (round((ray.y) * 256) == (floor(ray.y) + 1) * 256 && env->map.bit_map[(int)floor(ray.y)] != 0 && env->map.bit_map[(int)floor(ray.y) + 1][(int)floor(ray.x)] != '1')
+		return (env->map.south);
+	else
+		return (env->map.east);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:02:34 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/26 18:10:43 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/27 14:23:06 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	pc_init_textures(t_env *env)
 	pc_init_one_texture(env, &env->sky, "textures/sky.xpm");
 	pc_init_one_texture(env, &env->floor, "textures/sand_floor.xpm");
 	pc_init_one_texture(env, &env->map.north, "textures/Grey_Brick.xpm");
-	pc_init_one_texture(env, &env->map.south, "textures/Grey_Brick.xpm");
-	pc_init_one_texture(env, &env->map.west, "textures/Grey_Brick.xpm");
-	pc_init_one_texture(env, &env->map.east, "textures/Grey_Brick.xpm");
+	pc_init_one_texture(env, &env->map.south, "textures/Wooden-wall.xpm");
+	pc_init_one_texture(env, &env->map.west, "textures/wall_metal.xpm");
+	pc_init_one_texture(env, &env->map.east, "textures/wall_mossy.xpm");
 }
 
 void	pc_init_one_texture(t_env *env, t_texture *texture, char *file_path)
