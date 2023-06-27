@@ -6,7 +6,7 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:24:18 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/27 16:57:44 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/27 17:06:46 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	pc_print_map(t_env *env);
 
 //       --=[ exit/exit.c ]=--       //
 void	pc_error(char *str, t_env *env);
-void	free_stuff(t_env *env);
+void	pc_free_stuff(t_env *env);
 
 
 //    --=[ initialization/input_validation.c ]=--    //
@@ -52,7 +52,7 @@ void	pc_init_one_texture(t_env *env, t_texture *texture, char *file_path);
 
 //    --=[ window_menager.c ]=--    //
 int		key_press(int key, t_env *env);
-int		close_window(t_env *env, int failure);
+int		pc_close_window(t_env *env, int failure);
 
 //       --=[ drawers.c ]=--       //
 void	my_mlx_pixel_put(t_env *med, int color, t_vec2 point);
