@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:04:28 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/28 18:19:42 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 18:30:23 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,7 @@ int	pc_get_texture(t_env *env, t_list **file_lines)
 		while (el->content[i] == ' ')
 			i++;
 		if (!el->content[i] || el->content[i] == '\n')
-		{
-			el = el->next;
-			continue ;
-		}
+			;
 		else if (ft_strlen(el->content) > 4 && is_config(el->content + i))
 			pc_add_config_option(env, el->content);
 		else if (is_map(el->content))
@@ -110,14 +107,7 @@ void	pc_add_config_option(t_env *env, char *option)
 	}
 	else
 	{
-		if (!ft_strncmp(option, "NO ", 3))
-			texture = &env->map.north;
-		if (!ft_strncmp(option, "SO ", 3))
-			texture = &env->map.south;
-		if (!ft_strncmp(option, "WE ", 3))
-			texture = &env->map.west;
-		if (!ft_strncmp(option, "EA ", 3))
-			texture = &env->map.east;
+		texture = pc_choose_side(env, option);
 		option += 2;
 		while (*(++option) == ' ')
 			;
@@ -126,33 +116,4 @@ void	pc_add_config_option(t_env *env, char *option)
 		free(tmp);
 		ft_printf("New texture added: %s%s%s", GREEN, option, NC);
 	}
-}
-
-unsigned int	pc_decode_color(t_env *env, char *option)
-{
-	unsigned int	result;
-	char			*tmp;
-	int				i;
-	int				k;
-
-	i = 0;
-	k = 0;
-	result = 0;
-	while (k < 3)
-	{
-		option += i;
-		i = 0;
-		while (!ft_isdigit(*(++option)))
-			;
-		while (ft_isdigit(option[i]))
-			i++;
-		tmp = ft_substr(option, 0, i);
-		if (!ft_isnumber(tmp) || ft_atoi(tmp) < 0 || ft_atoi(tmp) > 255)
-			pc_error("One of color argument is not a valid number", env);
-		result <<= 8;
-		result += ft_atoi(tmp);
-		free(tmp);
-		k++;
-	}
-	return (result);
 }

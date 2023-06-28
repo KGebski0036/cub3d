@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:24:18 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/28 18:18:04 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 18:28:20 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ unsigned int	my_mlx_pixel_get(t_texture texture, t_vec2 point);
 //       --=[ helpers.c ]=--       //
 void			pc_print_map(t_env *env);
 void			pc_print_player(t_env *env);
+t_texture		*pc_choose_side(t_env *env, char *option);
+
 //    --=[ initialization/input_validation.c ]=--    //
 void			pc_input_checker(int ac, char **av);
 

@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:08:12 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/28 18:13:47 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 18:25:27 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,33 @@ void	pc_fill_edges(char **map, int height, int wight)
 		map[i][ft_strlen(map[i]) - 1] = '1';
 		i++;
 	}
+}
+
+unsigned int	pc_decode_color(t_env *env, char *option)
+{
+	unsigned int	result;
+	char			*tmp;
+	int				i;
+	int				k;
+
+	i = 0;
+	k = 0;
+	result = 0;
+	while (k < 3)
+	{
+		option += i;
+		i = 0;
+		while (!ft_isdigit(*(++option)))
+			;
+		while (ft_isdigit(option[i]))
+			i++;
+		tmp = ft_substr(option, 0, i);
+		if (!ft_isnumber(tmp) || ft_atoi(tmp) < 0 || ft_atoi(tmp) > 255)
+			pc_error("One of color argument is not a valid number", env);
+		result <<= 8;
+		result += ft_atoi(tmp);
+		free(tmp);
+		k++;
+	}
+	return (result);
 }
