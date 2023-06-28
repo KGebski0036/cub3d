@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:25:13 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/28 14:51:39 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 18:16:16 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	pc_map_validation(t_env *env, t_list **file_lines, int offset)
 	env->map.bit_map = map;
 	if (env->player.pos.x == -1)
 		return (pc_error("Map did not contain a player", env));
-	if (!pc_check_map(env->map.bit_map, env->player.pos, height, wight, env))
+	if (!pc_check_map(env->map.bit_map, env->player.pos,
+			(t_vec2){wight, height}, env))
 		return (pc_error("Map is not surrounded by walls", env));
 }
 
@@ -73,7 +74,7 @@ int	pc_count_map_wight(t_list **file_lines)
 	return (max);
 }
 
-void pc_get_map(t_env *env, t_list *el, char ***map)
+void	pc_get_map(t_env *env, t_list *el, char ***map)
 {
 	int		i;
 	int		j;
@@ -102,7 +103,7 @@ void pc_get_map(t_env *env, t_list *el, char ***map)
 	(*map)[j] = 0;
 }
 
-void pc_get_player(t_env *env, int j, int i, char c)
+void	pc_get_player(t_env *env, int j, int i, char c)
 {
 	env->player.pos.x = i + 0.4;
 	env->player.pos.y = j + 0.4;
