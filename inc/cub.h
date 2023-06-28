@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:24:18 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/28 17:09:41 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/28 17:51:05 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ void			pc_render_frame(t_env *env);
 void			pc_raycasting(t_env *env);
 double			get_distance_to_wall(t_env *env, t_vec2 *ray,
 					double rayCos, double raySin);
-int				draw_texture(t_vec2 point, int wallHeight,
-					int texture_pos, t_texture texture, t_env *env);
 t_texture		pc_get_correct_side(t_env *env, t_vec2 ray);
 
 //   --=[ parsing/read_map_file.c ]=--   //
@@ -98,6 +96,10 @@ double			degree_to_radians(double degree);
 
 //    --=[ player_control.c ]=--    //
 int				player_control(int key, t_env *env);
+void			pc_check_colision(t_env *env, double new_y, double new_x);
+double			pc_get_player_angle(int key, t_env *env);
+double			pc_get_new_x_pos(int key, t_env *env, double player_cos);
+double			pc_get_new_y_pos(int key, t_env *env, double player_sin);
 
 //tmp
 void			ft_debug(char	*str, char	*str2, t_env	*env);

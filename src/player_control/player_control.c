@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_control.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 16:37:12 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/25 17:26:55 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 18:04:20 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,61 +14,53 @@
 
 int	player_control(int key, t_env *env)
 {
-	if (key == KEY_W)
-	{
-		double playerCos = cos(degree_to_radians(env->player.rotation)) * MOVMENT_SPEED;
-		double playerSin = sin(degree_to_radians(env->player.rotation)) * MOVMENT_SPEED;
-		double newX = env->player.pos.x + playerCos;
-		double newY = env->player.pos.y + playerSin;
+	double	player_cos;
+	double	player_sin;
+	double	new_x;
+	double	new_y;
 
-
-		if(env->map.bit_map[(int)floor(newY)][(int)floor(newX)] != '1') {
-			env->player.pos.x = newX;
-			env->player.pos.y = newY;
-		}
-	}
-	if (key == KEY_S)
-	{
-		double playerCos = cos(degree_to_radians(env->player.rotation)) * MOVMENT_SPEED;
-		double playerSin = sin(degree_to_radians(env->player.rotation)) * MOVMENT_SPEED;
-		double newX = env->player.pos.x - playerCos;
-		double newY = env->player.pos.y - playerSin;
-
-
-		if(env->map.bit_map[(int)floor(newY)][(int)floor(newX)] != '1') {
-			env->player.pos.x = newX;
-			env->player.pos.y = newY;
-		}
-	}
-	if (key == KEY_A)
-	{
-		double playerCos = cos(degree_to_radians(env->player.rotation + 90)) * MOVMENT_SPEED;
-		double playerSin = sin(degree_to_radians(env->player.rotation + 90)) * MOVMENT_SPEED;
-		double newX = env->player.pos.x - playerCos;
-		double newY = env->player.pos.y - playerSin;
-
-
-		if(env->map.bit_map[(int)floor(newY)][(int)floor(newX)] != '1') {
-			env->player.pos.x = newX;
-			env->player.pos.y = newY;
-		}
-	}
-	if (key == KEY_D)
-	{
-		double playerCos = cos(degree_to_radians(env->player.rotation + 90)) * MOVMENT_SPEED;
-		double playerSin = sin(degree_to_radians(env->player.rotation + 90)) * MOVMENT_SPEED;
-		double newX = env->player.pos.x + playerCos;
-		double newY = env->player.pos.y + playerSin;
-
-
-		if(env->map.bit_map[(int)floor(newY)][(int)floor(newX)] != '1') {
-			env->player.pos.x = newX;
-			env->player.pos.y = newY;
-		}
-	}
+	player_cos = cos(pc_get_player_angle(key, env)) * MOVMENT_SPEED;
+	player_sin = sin(pc_get_player_angle(key, env)) * MOVMENT_SPEED;
+	new_x = pc_get_new_x_pos(key, env, player_cos);
+	new_y = pc_get_new_y_pos(key, env, player_sin);
+	if (key == KEY_W || key == KEY_A || key == KEY_S || key == KEY_D)
+		pc_check_colision(env, new_y, new_x);
 	if (key == KEY_LEFT)
 		env->player.rotation -= ROTATION_SPEED;
 	if (key == KEY_RIGHT)
 		env->player.rotation += ROTATION_SPEED;
 	return (0);
+}
+
+void	pc_check_colision(t_env *env, double new_y, double new_x)
+{
+	if (env->map.bit_map[(int)floor(new_y)][(int)floor(new_x)] != '1')
+	{
+		env->player.pos.x = new_x;
+		env->player.pos.y = new_y;
+	}
+}
+
+double	pc_get_player_angle(int key, t_env *env)
+{
+	if (key == KEY_W || key == KEY_S)
+		return (degree_to_radians(env->player.rotation));
+	else
+		return (degree_to_radians(env->player.rotation + 90));
+}
+
+double	pc_get_new_x_pos(int key, t_env *env, double player_cos)
+{
+	if (key == KEY_W || key == KEY_D)
+		return (env->player.pos.x + player_cos);
+	else
+		return (env->player.pos.x - player_cos);
+}
+
+double	pc_get_new_y_pos(int key, t_env *env, double player_sin)
+{
+	if (key == KEY_W || key == KEY_D)
+		return (env->player.pos.y + player_sin);
+	else
+		return (env->player.pos.y - player_sin);
 }

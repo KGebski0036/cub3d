@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 17:04:05 by cjackows          #+#    #+#             */
-/*   Updated: 2022/06/19 20:29:37 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/28 17:32:33 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 		while (s[i])
 		{
 			(*f)(i, s + i);
-		i++;
+			i++;
 		}
 	}
 }
