@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:04:28 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/28 19:27:38 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/28 19:42:17 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	pc_read_map_file(t_env *env, char *path)
 	offset = pc_get_texture(env, file_lines);
 	if (offset == ft_lstsize(*file_lines) - 1)
 	{
+		ft_lstclear(file_lines, free);
 		free(file_lines);
 		return (pc_error("Config did not contain map", env));
 	}
