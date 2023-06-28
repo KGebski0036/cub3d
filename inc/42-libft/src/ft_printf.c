@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 16:39:04 by cjackows          #+#    #+#             */
-/*   Updated: 2023/06/27 14:23:55 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/28 17:31:33 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ft_printf(const char *str, ...)
 		}
 		else
 			str_len += write(1, &str[str_index], 1);
-	str_index++;
+		str_index++;
 	}
 	va_end(args);
 	return (str_len);
@@ -84,7 +84,7 @@ int	ft_putnbr(const char *c, int base, size_t nbr)
 	if (c[0] == 'd')
 	{
 		if (temp < 0)
-		{				
+		{
 			i += ft_print('-', "ignore");
 			nbr *= -1;
 		}

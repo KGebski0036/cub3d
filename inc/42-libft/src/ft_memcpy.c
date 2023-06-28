@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 22:23:25 by cjackows          #+#    #+#             */
-/*   Updated: 2022/06/19 15:59:35 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/28 17:32:58 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ function doesn’t check for overflow or \0
  * @return void* 'dst'
  */
 void	*ft_memcpy(void *dst, const void *src, size_t n)
-{	
+{
 	char		*dst_tmp;
 	const char	*src_temp;
 

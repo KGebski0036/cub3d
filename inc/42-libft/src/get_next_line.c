@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 16:00:50 by cjackows          #+#    #+#             */
-/*   Updated: 2023/06/24 14:17:40 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 17:31:48 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*get_next_line(int fd)
 {
 	static char	*main_str[1024];
 	char		*return_str;
+
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	main_str[fd] = read_file(fd, main_str[fd]);

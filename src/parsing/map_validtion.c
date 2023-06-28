@@ -6,28 +6,28 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:08:12 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/28 16:42:55 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 18:13:47 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int	pc_check_map(char **map, t_vec2 p_pos, int height, int wight, t_env *env)
+int	pc_check_map(char **map, t_vec2 p_pos, t_vec2 size, t_env *env)
 {
 	int	result;
 
-	result = pc_fill(map, height, wight, (int)p_pos.y, (int)p_pos.x);
+	result = pc_fill(map, size, (int)p_pos.y, (int)p_pos.x);
 	pc_print_map(env);
-	pc_fill_edges(map, height, wight);
+	pc_fill_edges(map, (int)size.y, (int)size.x);
 	return (result);
 }
 
-int	pc_fill(char **map, int height, int wight, int row, int col)
+int	pc_fill(char **map, t_vec2 size, int row, int col)
 {
 	int	i;
 
 	i = 0;
-	if (row < 0 || col < 0 || row >= height || col >= wight)
+	if (row < 0 || col < 0 || row >= (int)size.y || col >= (int)size.x)
 		return (0);
 	if (map[row][col] == 'F' || map[row][col] != '0')
 	{
@@ -36,12 +36,10 @@ int	pc_fill(char **map, int height, int wight, int row, int col)
 		return (1);
 	}
 	map[row][col] = 'F';
-
-	i += pc_fill(map, height, wight, row - 1, col);
-	i += pc_fill(map, height, wight, row + 1, col);
-	i += pc_fill(map, height, wight, row, col - 1);
-	i += pc_fill(map, height, wight, row, col + 1);
-
+	i += pc_fill(map, size, row - 1, col);
+	i += pc_fill(map, size, row + 1, col);
+	i += pc_fill(map, size, row, col - 1);
+	i += pc_fill(map, size, row, col + 1);
 	if (i != 4)
 		return (0);
 	return (1);
@@ -49,8 +47,8 @@ int	pc_fill(char **map, int height, int wight, int row, int col)
 
 void	pc_fill_edges(char **map, int height, int wight)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (i < wight - 1)
 		map[0][i++] = '1';

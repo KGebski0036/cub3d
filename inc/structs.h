@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:49:56 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/27 21:04:17 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 17:30:43 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ typedef struct s_env
 	void			*window;
 	void			*img;
 	char			*img_addr;
-	t_texture 		sky;
-	t_texture 		floor;
+	t_texture		sky;
+	t_texture		floor;
 
 	t_vec2			window_size;
 	t_vec2			window_half_size;
