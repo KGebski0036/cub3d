@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pixels_drawings.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 14:55:24 by cjackows          #+#    #+#             */
-/*   Updated: 2023/06/28 15:21:43 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/28 19:13:53 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	my_mlx_pixel_put(t_env *med, int color, t_vec2 point)
+void	pc_put_px(t_env *med, int color, t_vec2 point)
 {
 	char	*dst;
 	int		line_l;
@@ -24,7 +24,7 @@ void	my_mlx_pixel_put(t_env *med, int color, t_vec2 point)
 	*(unsigned int *)dst = color;
 }
 
-unsigned int	my_mlx_pixel_get(t_texture texture, t_vec2 point)
+unsigned int	pc_get_px(t_texture texture, t_vec2 point)
 {
 	char	*dst;
 	int		line_l;

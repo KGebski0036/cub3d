@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:24:18 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/28 18:28:20 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 19:13:53 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@
 # define MOVMENT_SPEED 0.2
 # define ROTATION_SPEED 10
 
+void			pc_draw_column(t_env *env, int wall_height, t_texture texture);
+int				pc_calculate_wall_height(t_env *env, t_vec2 *ray, double ray_angle);
+void			pc_draw_floor_texture(t_env *env, t_vec2 point);
+void			pc_draw_wall(t_env *env, t_texture texture, int wall_height, double *i);
+
 /*
 └── src/_main.c   */
 /*   └── exit/ - exit.c */
@@ -41,8 +46,8 @@ void			pc_fps_counter(t_env *env);
 /*   				└── pixels_drawings.c */
 /*   				└── textu_drawings.c */
 /*   				└── pixels_drawings.c */
-void			my_mlx_pixel_put(t_env *med, int color, t_vec2 point);
-unsigned int	my_mlx_pixel_get(t_texture texture, t_vec2 point);
+void			pc_put_px(t_env *med, int color, t_vec2 point);
+unsigned int	pc_get_px(t_texture texture, t_vec2 point);
 
 //       --=[ helpers.c ]=--       //
 void			pc_print_map(t_env *env);

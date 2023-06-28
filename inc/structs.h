@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:49:56 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/28 17:30:43 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 19:11:14 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ typedef struct s_player
 	int		rotation;
 }	t_player;
 
+typedef struct s_render
+{
+	t_vec2	point;
+	double	texture_pos;
+}	t_render;
+
 typedef struct s_env
 {
 	void			*mlx;
@@ -68,6 +74,7 @@ typedef struct s_env
 
 	t_map			map;
 	t_player		player;
+	t_render		r;
 }	t_env;
 
 #endif
