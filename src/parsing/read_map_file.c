@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:04:28 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/27 21:43:29 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 15:16:56 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,7 @@ int	pc_get_texture(t_env *env, t_list **file_lines)
 		else if (is_map(el->content))
 			break;
 		else
-			ft_printf("%s Config file contain forbidden option> %s%s",
-				pc_error, el->content, NC);
+			pc_error("Config file contain forbidden option", env);
 		el = el->next;
 	}
 	ft_printf("\n");
@@ -95,6 +94,7 @@ int	is_map(char *str)
 
 void pc_add_config_option(t_env *env, char *option)
 {
+	char	*tmp;
 	if (!ft_strncmp(option, "F ", 2) || !ft_strncmp(option, "C ", 2))
 	{
 		unsigned int color = pc_decode_color(env, option);
@@ -120,8 +120,9 @@ void pc_add_config_option(t_env *env, char *option)
 		option += 2;
 		while (*(++option) == ' ')
 			;
-		ft_printf("|%s|\n", ft_strtrim(option, " \n"));
-		pc_init_one_texture(env, texture, ft_strtrim(option, " \n"));
+		tmp = ft_strtrim(option, " \n");
+		pc_init_one_texture(env, texture, tmp);
+		free(tmp);
 		ft_printf("New texture added: %s%s%s", GREEN, option, NC);
 	}
 }
@@ -147,7 +148,8 @@ unsigned int	pc_decode_color(t_env *env, char *option)
 			pc_error("One of color argument is not a valid number", env);
 		result <<= 8;
 		result += ft_atoi(tmp);
+		free(tmp);
 		k++;
 	}
-	return result;
+	return (result);
 }

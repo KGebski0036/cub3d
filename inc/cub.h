@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:24:18 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/27 21:07:44 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 14:51:45 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void		pc_get_player(t_env *env, int j, int i, char c);
 int			pc_check_map(char **map, t_vec2 player_pos, int height,
 				int wight, t_env *env);
 int			pc_fill(char **map, int height, int wight, int row, int col);
-
+void		pc_fill_edges(char **map, int height, int wight);
 //        --=[ utils.c ]=--        //
 double		degree_to_radians(double degree);
 

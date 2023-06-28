@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:25:13 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/27 17:22:50 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:51:39 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,14 +104,14 @@ void pc_get_map(t_env *env, t_list *el, char ***map)
 
 void pc_get_player(t_env *env, int j, int i, char c)
 {
-	env->player.pos.x = i;
-	env->player.pos.y = j;
+	env->player.pos.x = i + 0.4;
+	env->player.pos.y = j + 0.4;
 	if (c == 'N')
-		env->player.rotation = 0;
-	if (c == 'E')
-		env->player.rotation = 90;
-	if (c == 'S')
-		env->player.rotation = 180;
-	if (c == 'W')
 		env->player.rotation = 270;
+	if (c == 'E')
+		env->player.rotation = 0;
+	if (c == 'S')
+		env->player.rotation = 90;
+	if (c == 'W')
+		env->player.rotation = 180;
 }
