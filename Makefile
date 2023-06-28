@@ -6,7 +6,7 @@
 #    By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 18:32:51 by cjackows          #+#    #+#              #
-#    Updated: 2023/06/28 17:48:17 by cjackows         ###   ########.fr        #
+#    Updated: 2023/06/28 19:45:21 by cjackows         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,6 @@ CFLAGS		=	-O3 -Wall -Wextra -Werror -g
 LIBFT		=	./inc/42-libft/libft.a
 LIBFT_DIR	=	./inc/42-libft/
 HDRS_DIR	=	./inc/
-SRC_DIR		=	./src
 OBJ_DIR		=	./obj
 
 ifeq ($(shell uname), Linux)
@@ -55,7 +54,25 @@ else
 						-DKEY_W=13 -DKEY_A=0 -DKEY_S=1 -DKEY_D=2 -DKEYS
 endif
 
-SRC			=	$(shell find $(SRC_DIR) -name '*.c')#TODO
+SRC_DIR		=	./src
+
+SRC			=	$(SRC_DIR)/_main.c \
+				$(SRC_DIR)/initialization/initialization.c \
+				$(SRC_DIR)/initialization/textures_init.c \
+				$(SRC_DIR)/miscellaneous/exit.c \
+				$(SRC_DIR)/miscellaneous/helpers.c \
+				$(SRC_DIR)/miscellaneous/player_control.c \
+				$(SRC_DIR)/miscellaneous/window_menager.c \
+				$(SRC_DIR)/parsing/input_validation.c \
+				$(SRC_DIR)/parsing/map_validtion.c \
+				$(SRC_DIR)/parsing/read_map.c \
+				$(SRC_DIR)/parsing/read_map_file.c \
+				$(SRC_DIR)/rendering/drawers.c \
+				$(SRC_DIR)/rendering/fps_counter.c \
+				$(SRC_DIR)/rendering/pixels_drawings.c \
+				$(SRC_DIR)/rendering/ray_casting.c \
+				$(SRC_DIR)/rendering/texture_drawings.c\
+
 HDRS 		=	-I$(LIBFT_DIR)inc -I$(MLX_DIR) -I$(HDRS_DIR)
 LIBS		=	-L$(LIBFT_DIR) -L$(MLX_DIR) $(MLX_FLAGS)
 OBJ				=$(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))

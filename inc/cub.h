@@ -6,7 +6,7 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:24:18 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/28 19:36:28 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/28 19:40:45 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@
 /*
 └── src/
     └── _main.c
-    └── exit/ - exit.c */
+    └── miscellaneous/
+        └── exit.c */
 void			pc_error(char *str, t_env *env);
 void			pc_free_stuff(t_env *env);
-/*  └── miscellaneous/
-        └── helpers.c */
+/*      └── helpers.c */
 void			pc_print_map(t_env *env);
 double			pc_degree_to_radians(double degree);
 /*		└── window_menager.c */
