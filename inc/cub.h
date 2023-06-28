@@ -6,7 +6,7 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 11:24:18 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/28 17:08:20 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/28 17:09:41 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int				pc_close_window(t_env *env, int failure);
 
 //       --=[ drawers.c ]=--       //
 
-int				update(t_env *env);
+int				pc_frame_update(t_env *env);
 void			pc_render_frame(t_env *env);
 void			pc_raycasting(t_env *env);
 double			get_distance_to_wall(t_env *env, t_vec2 *ray,
