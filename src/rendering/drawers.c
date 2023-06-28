@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:02:35 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/28 19:35:27 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/28 19:46:16 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ double	get_distance_to_wall(t_env *env, t_vec2 *ray, double rayCos,
 		ray->x += rayCos;
 		ray->y += raySin;
 		is_wall = env->map.bit_map[(int)floor(ray->y)][(int)floor(ray->x)]
-			== '1';
+			== '1' || env->map.bit_map[(int)floor(ray->y)][(int)floor(ray->x)]
+			== '\0';
 	}
 	return (sqrt(pow(env->player.pos.x - ray->x, 2)
 			+ pow(env->player.pos.y - ray->y, 2)));
