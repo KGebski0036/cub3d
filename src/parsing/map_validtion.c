@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:08:12 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/28 15:06:15 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 16:33:59 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,15 @@ void	pc_fill_edges(char **map, int height, int wight)
 	int i;
 	
 	i = 0;
-	while (i < wight)
+	while (i < wight - 1)
 		map[0][i++] = '1';
-	i = 0;
-	while (i < wight)
-		map[height - 1][i++] = '1';
 	i = 0;
 	while (i < height)
 		map[i++][0] = '1';
 	i = 0;
 	while (i < height)
-		map[i++][wight - 2] = '1';
+	{
+		map[i][ft_strlen(map[i]) - 1] = '1';
+		i++;
+	}
 }
