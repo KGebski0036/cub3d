@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+         #
+#    By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 18:32:51 by cjackows          #+#    #+#              #
-#    Updated: 2023/06/28 16:39:00 by kgebski          ###   ########.fr        #
+#    Updated: 2023/06/28 17:44:22 by cjackows         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ PROGRESS_TODO_CHAR = ⬜️
 CURRENT_PROGRESS = 0
 TOTAL_PROGRESS = $(words $(OBJ))
 
-NAME		=	cub3d
+NAME		=	cub3D
 CC			=	cc
 CFLAGS		=	-O3 -Wall -Wextra -Werror -g
 
@@ -81,7 +81,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 
 libft:
-	@make all --quiet -C  $(LIBFT_DIR)
+	@make all -C $(LIBFT_DIR)
 	@clear
 
 mlx:
