@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 16:07:33 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/28 18:09:00 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 18:28:05 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,17 @@ void	pc_print_player(t_env *env)
 		ft_printf("🔚");
 	if (env->player.rotation == 180)
 		ft_printf("🔙");
+}
+
+t_texture	*pc_choose_side(t_env *env, char *option)
+{
+	if (!ft_strncmp(option, "NO ", 3))
+		return (&env->map.north);
+	if (!ft_strncmp(option, "SO ", 3))
+		return (&env->map.south);
+	if (!ft_strncmp(option, "WE ", 3))
+		return (&env->map.west);
+	if (!ft_strncmp(option, "EA ", 3))
+		return (&env->map.east);
+	return (0);
 }
