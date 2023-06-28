@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:08:12 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/28 16:33:59 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 16:42:55 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	pc_check_map(char **map, t_vec2 p_pos, int height, int wight, t_env *env)
 	int	result;
 
 	result = pc_fill(map, height, wight, (int)p_pos.y, (int)p_pos.x);
-	pc_fill_edges(map, height, wight);
 	pc_print_map(env);
+	pc_fill_edges(map, height, wight);
 	return (result);
 }
 

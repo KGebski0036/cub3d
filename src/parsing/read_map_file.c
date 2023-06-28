@@ -6,7 +6,7 @@
 /*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:04:28 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/28 15:16:56 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 16:46:17 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ unsigned int	pc_decode_color(t_env *env, char *option)
 		while (ft_isdigit(option[i]))
 			i++;
 		tmp = ft_substr(option, 0, i);
-		if (!ft_isnumber(tmp) && ft_atoi(tmp) >= 0 && ft_atoi(tmp) <= 255)
+		if (!ft_isnumber(tmp) || ft_atoi(tmp) < 0 || ft_atoi(tmp) > 255)
 			pc_error("One of color argument is not a valid number", env);
 		result <<= 8;
 		result += ft_atoi(tmp);
