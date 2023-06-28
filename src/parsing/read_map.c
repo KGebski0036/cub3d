@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:25:13 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/28 18:16:16 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 19:10:38 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	pc_count_map_height(t_list **file_lines, t_env *env)
 	el = *file_lines;
 	while (el->next)
 	{
-		if (!is_map(el->content))
+		if (!pc_line_map_vailidation(el->content))
 		{
 			ft_printf("%s Map contain forbiden character in line %i : %s%s",
 				ERROR, size, el->content, NC);

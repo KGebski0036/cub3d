@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   read_map_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:04:28 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/28 18:30:23 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 19:10:38 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+static int	pc_get_texture(t_env *env, t_list **file_lines);
+static void	pc_add_config_option(t_env *env, char *option);
+static int	is_config(char *str);
 
 void	pc_read_map_file(t_env *env, char *path)
 {
@@ -40,42 +44,8 @@ void	pc_read_map_file(t_env *env, char *path)
 	free(file_lines);
 }
 
-int	pc_get_texture(t_env *env, t_list **file_lines)
-{
-	t_list	*el;
-	int		offset;
-	int		i;
-
-	el = *file_lines;
-	offset = 0;
-	while (el->next)
-	{
-		i = 0;
-		offset++;
-		while (el->content[i] == ' ')
-			i++;
-		if (!el->content[i] || el->content[i] == '\n')
-			;
-		else if (ft_strlen(el->content) > 4 && is_config(el->content + i))
-			pc_add_config_option(env, el->content);
-		else if (is_map(el->content))
-			break ;
-		else
-			pc_error("Config file contain forbidden option", env);
-		el = el->next;
-	}
-	ft_printf("\n");
-	return (offset);
-}
-
-int	is_config(char *str)
-{
-	return (!ft_strncmp(str, "NO ", 3) || !ft_strncmp(str, "SO ", 3)
-		|| !ft_strncmp(str, "WE ", 3) || !ft_strncmp(str, "EA ", 3)
-		|| !ft_strncmp(str, "F ", 2) || !ft_strncmp(str, "C ", 2));
-}
-
-int	is_map(char *str)
+//?
+int	pc_line_map_vailidation(char *str)
 {
 	int	i;
 
@@ -90,7 +60,14 @@ int	is_map(char *str)
 	return (1);
 }
 
-void	pc_add_config_option(t_env *env, char *option)
+static int	is_config(char *str)
+{
+	return (!ft_strncmp(str, "NO ", 3) || !ft_strncmp(str, "SO ", 3)
+		|| !ft_strncmp(str, "WE ", 3) || !ft_strncmp(str, "EA ", 3)
+		|| !ft_strncmp(str, "F ", 2) || !ft_strncmp(str, "C ", 2));
+}
+
+static void	pc_add_config_option(t_env *env, char *option)
 {
 	char			*tmp;
 	unsigned int	color;
@@ -116,4 +93,32 @@ void	pc_add_config_option(t_env *env, char *option)
 		free(tmp);
 		ft_printf("New texture added: %s%s%s", GREEN, option, NC);
 	}
+}
+
+static int	pc_get_texture(t_env *env, t_list **file_lines)
+{
+	t_list	*el;
+	int		offset;
+	int		i;
+
+	el = *file_lines;
+	offset = 0;
+	while (el->next)
+	{
+		i = 0;
+		offset++;
+		while (el->content[i] == ' ')
+			i++;
+		if (!el->content[i] || el->content[i] == '\n')
+			;
+		else if (ft_strlen(el->content) > 4 && is_config(el->content + i))
+			pc_add_config_option(env, el->content);
+		else if (pc_line_map_vailidation(el->content))
+			break ;
+		else
+			pc_error("Config file contain forbidden option", env);
+		el = el->next;
+	}
+	ft_printf("\n");
+	return (offset);
 }

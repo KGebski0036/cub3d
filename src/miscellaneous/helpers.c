@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 16:07:33 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/28 18:28:05 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 19:12:52 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+static void	pc_print_player(t_env *env)
+{
+	if (env->player.rotation == 270)
+		ft_printf("🔝");
+	if (env->player.rotation == 0)
+		ft_printf("🔜");
+	if (env->player.rotation == 90)
+		ft_printf("🔚");
+	if (env->player.rotation == 180)
+		ft_printf("🔙");
+}
 
 void	pc_print_map(t_env *env)
 {
@@ -38,27 +50,7 @@ void	pc_print_map(t_env *env)
 	}
 }
 
-void	pc_print_player(t_env *env)
+double	pc_degree_to_radians(double degree)
 {
-	if (env->player.rotation == 270)
-		ft_printf("🔝");
-	if (env->player.rotation == 0)
-		ft_printf("🔜");
-	if (env->player.rotation == 90)
-		ft_printf("🔚");
-	if (env->player.rotation == 180)
-		ft_printf("🔙");
-}
-
-t_texture	*pc_choose_side(t_env *env, char *option)
-{
-	if (!ft_strncmp(option, "NO ", 3))
-		return (&env->map.north);
-	if (!ft_strncmp(option, "SO ", 3))
-		return (&env->map.south);
-	if (!ft_strncmp(option, "WE ", 3))
-		return (&env->map.west);
-	if (!ft_strncmp(option, "EA ", 3))
-		return (&env->map.east);
-	return (0);
+	return ((degree * M_PI) / 180);
 }

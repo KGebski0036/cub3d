@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   player_control.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 16:37:12 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/28 18:04:20 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 19:14:55 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+static void		pc_check_colision(t_env *env, double new_y, double new_x);
+static double	pc_get_new_x_pos(int key, t_env *env, double player_cos);
+static double	pc_get_player_angle(int key, t_env *env);
 
 int	player_control(int key, t_env *env)
 {
@@ -32,7 +36,7 @@ int	player_control(int key, t_env *env)
 	return (0);
 }
 
-void	pc_check_colision(t_env *env, double new_y, double new_x)
+static void	pc_check_colision(t_env *env, double new_y, double new_x)
 {
 	if (env->map.bit_map[(int)floor(new_y)][(int)floor(new_x)] != '1')
 	{
@@ -41,7 +45,7 @@ void	pc_check_colision(t_env *env, double new_y, double new_x)
 	}
 }
 
-double	pc_get_player_angle(int key, t_env *env)
+static double	pc_get_player_angle(int key, t_env *env)
 {
 	if (key == KEY_W || key == KEY_S)
 		return (degree_to_radians(env->player.rotation));
@@ -49,7 +53,7 @@ double	pc_get_player_angle(int key, t_env *env)
 		return (degree_to_radians(env->player.rotation + 90));
 }
 
-double	pc_get_new_x_pos(int key, t_env *env, double player_cos)
+static double	pc_get_new_x_pos(int key, t_env *env, double player_cos)
 {
 	if (key == KEY_W || key == KEY_D)
 		return (env->player.pos.x + player_cos);
