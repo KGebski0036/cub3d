@@ -3,26 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_validtion.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:08:12 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/28 18:25:27 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 19:05:29 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int	pc_check_map(char **map, t_vec2 p_pos, t_vec2 size, t_env *env)
-{
-	int	result;
-
-	result = pc_fill(map, size, (int)p_pos.y, (int)p_pos.x);
-	pc_print_map(env);
-	pc_fill_edges(map, (int)size.y, (int)size.x);
-	return (result);
-}
-
-int	pc_fill(char **map, t_vec2 size, int row, int col)
+static int	pc_fill(char **map, t_vec2 size, int row, int col)
 {
 	int	i;
 
@@ -45,7 +35,7 @@ int	pc_fill(char **map, t_vec2 size, int row, int col)
 	return (1);
 }
 
-void	pc_fill_edges(char **map, int height, int wight)
+static void	pc_fill_edges(char **map, int height, int wight)
 {
 	int	i;
 
@@ -61,6 +51,16 @@ void	pc_fill_edges(char **map, int height, int wight)
 		map[i][ft_strlen(map[i]) - 1] = '1';
 		i++;
 	}
+}
+
+int	pc_check_map(char **map, t_vec2 p_pos, t_vec2 size, t_env *env)
+{
+	int	result;
+
+	result = pc_fill(map, size, (int)p_pos.y, (int)p_pos.x);
+	pc_print_map(env);
+	pc_fill_edges(map, (int)size.y, (int)size.x);
+	return (result);
 }
 
 unsigned int	pc_decode_color(t_env *env, char *option)

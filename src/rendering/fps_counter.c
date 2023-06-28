@@ -6,10 +6,11 @@
 /*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:03:31 by cjackows          #+#    #+#             */
-/*   Updated: 2023/06/28 15:17:03 by cjackows         ###   ########.fr       */
+/*   Updated: 2023/06/28 19:33:25 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <time.h>
 #include "cub.h"
 
 void	pc_fps_counter(t_env *env)

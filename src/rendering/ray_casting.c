@@ -3,16 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 18:26:01 by cjackows          #+#    #+#             */
-/*   Updated: 2023/06/28 19:14:09 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 19:35:45 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	pc_raycasting(t_env *env)
+static int	pc_calculate_wall_height(t_env *env, t_vec2 *ray, double ray_angle);
+static void	pc_draw_column(t_env *env, int wall_height, t_texture texture);
+static void	pc_draw_floor_texture(t_env *env, t_vec2 point);
+static void	pc_draw_wall(t_env *env, t_texture texture, int wall_height,
+				double *i);
+
+void	pc_ray_casting(t_env *env)
 {
 	t_vec2		ray;
 	double		ray_angle;
@@ -34,20 +40,20 @@ void	pc_raycasting(t_env *env)
 	}
 }
 
-int	pc_calculate_wall_height(t_env *env, t_vec2 *ray, double ray_angle)
+static int	pc_calculate_wall_height(t_env *env, t_vec2 *ray, double ray_angle)
 {
 	double	distance;
 	double	ray_cos;
 	double	ray_sin;
 
-	ray_cos = cos(degree_to_radians(ray_angle)) / env->raycast_precision;
-	ray_sin = sin(degree_to_radians(ray_angle)) / env->raycast_precision;
+	ray_cos = cos(pc_degree_to_radians(ray_angle)) / env->raycast_precision;
+	ray_sin = sin(pc_degree_to_radians(ray_angle)) / env->raycast_precision;
 	distance = get_distance_to_wall(env, ray, ray_cos, ray_sin);
-	distance *= cos(degree_to_radians(ray_angle - env->player.rotation));
+	distance *= cos(pc_degree_to_radians(ray_angle - env->player.rotation));
 	return ((int)floor(env->window_half_size.y / distance));
 }
 
-void	pc_draw_column(t_env *env, int wall_height, t_texture texture)
+static void	pc_draw_column(t_env *env, int wall_height, t_texture texture)
 {
 	double	i;
 
@@ -76,7 +82,7 @@ void	pc_draw_column(t_env *env, int wall_height, t_texture texture)
 	}
 }
 
-void	pc_draw_floor_texture(t_env *env, t_vec2 point)
+static void	pc_draw_floor_texture(t_env *env, t_vec2 point)
 {
 	t_vec2	p;
 
@@ -85,13 +91,14 @@ void	pc_draw_floor_texture(t_env *env, t_vec2 point)
 	pc_put_px(env, pc_get_px(env->floor, p), point);
 }
 
-void	pc_draw_wall(t_env *env, t_texture texture, int wall_height, double *i)
+static void	pc_draw_wall(t_env *env, t_texture texture, int wall_height,
+		double *i)
 {
 	double			i_inc;
 	unsigned int	color;
 
 	i_inc = ((double)texture.height / (wall_height * 2));
-	if (wall_height > env->window_half_size.y && i == 0)
+	if (wall_height > env->window_half_size.y && *i == 0)
 	{
 		*i = (((double)(wall_height) - env->window_half_size.y) * i_inc);
 	}

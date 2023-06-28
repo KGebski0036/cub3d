@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pixels_drawings.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 14:55:24 by cjackows          #+#    #+#             */
-/*   Updated: 2023/06/28 19:13:53 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 19:31:24 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

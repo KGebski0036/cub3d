@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:02:35 by kgebski           #+#    #+#             */
-/*   Updated: 2023/06/28 18:50:36 by kgebski          ###   ########.fr       */
+/*   Updated: 2023/06/28 19:35:27 by cjackows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	pc_frame_update(t_env *env)
 
 void	pc_render_frame(t_env *env)
 {
-	pc_raycasting(env);
+	pc_ray_casting(env);
 	mlx_put_image_to_window(env->mlx, env->window, env->img, 0, 0);
 }
 
