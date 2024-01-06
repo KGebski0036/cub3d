@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjackows <cjackows@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 03:24:51 by cjackows          #+#    #+#             */
-/*   Updated: 2023/06/27 14:16:04 by cjackows         ###   ########.fr       */
+/*   Updated: 2024/01/06 17:24:59 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ int		ft_pointer(const char *hex, size_t ptr);
 
 // --- GNL ---
 char	*get_next_line(int fd);
+char	*ft_substr2(char *s, unsigned int start, size_t len);
 char	*read_file(int fd, char *main_str);
 char	*return_func(char *main_str);
 char	*reset(char *main_str);

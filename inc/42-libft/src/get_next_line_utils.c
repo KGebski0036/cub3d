@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 16:00:50 by cjackows          #+#    #+#             */
-/*   Updated: 2023/06/28 17:32:03 by kgebski          ###   ########.fr       */
+/*   Updated: 2024/01/06 17:23:49 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*ft_strchr(char *str, int c)
  * @param len	The maximum length of the substring.
  * @return char* to allocated with subtring memory.
 **/
-char	*ft_substr(char *s, unsigned int start, size_t len)
+char	*ft_substr2(char *s, unsigned int start, size_t len)
 {
 	char	*sub;
 	size_t	i;

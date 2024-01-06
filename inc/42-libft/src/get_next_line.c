@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kgebski <kgebski@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: kgebski <kgebski@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 16:00:50 by cjackows          #+#    #+#             */
-/*   Updated: 2023/06/28 17:31:48 by kgebski          ###   ########.fr       */
+/*   Updated: 2024/01/06 17:24:19 by kgebski          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ char	*return_func(char *main_str)
 	while (main_str[i] && main_str[i] != '\n')
 		i++;
 	i++;
-	next_line = ft_substr(main_str, 0, i);
+	next_line = ft_substr2(main_str, 0, i);
 	return (next_line);
 }
 
@@ -148,7 +148,7 @@ char	*reset(char *main_str)
 	while (main_str[i] && main_str[i] != '\n')
 		i++;
 	i++;
-	rest = ft_substr(main_str, i, ft_strlen(main_str));
+	rest = ft_substr2(main_str, i, ft_strlen(main_str));
 	if (rest[0] == '\0')
 	{
 		free(rest);
